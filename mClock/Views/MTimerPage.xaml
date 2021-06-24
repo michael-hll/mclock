@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="mClock.Views.MTimerPage"
+    xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+    xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:controls="clr-namespace:mClock.Controls"
+    ios:Page.UseSafeArea="true"
+    Shell.NavBarIsVisible="False"
+    FlowDirection="MatchParent"
+    BackgroundColor="Black">
+    <Grid BackgroundColor="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*" />
+            <RowDefinition Height="70*" />
+            <RowDefinition Height="30*" />
+        </Grid.RowDefinitions>
+        <Label Text="Hello My Timer" HorizontalOptions="Center" TextColor="White"/>
+        <Grid Grid.Row="1"
+              HeightRequest="150"
+              WidthRequest="150"
+              BackgroundColor="Black">
+            <ffimageloading:CachedImage  
+                    Aspect="AspectFit"
+                    Source="{Binding MTimer.Picture}"
+                    BackgroundColor="Black"
+                    Margin="10">
+                <ffimageloading:CachedImage.Transformations>
+                    <fftransformations:CircleTransformation />
+                </ffimageloading:CachedImage.Transformations>
+            </ffimageloading:CachedImage>
+            <Label
+                   Text="{Binding Minutes}"
+                   FontSize="135"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   TextColor="RoyalBlue">
+                <Label.GestureRecognizers>
+                    <SwipeGestureRecognizer Direction="Right" Swiped="OnLableSwiped"/>
+                    <SwipeGestureRecognizer Direction="Up" Swiped="OnLableSwiped"/>
+                    <SwipeGestureRecognizer Direction="Down" Swiped="OnLableSwiped"/>
+                </Label.GestureRecognizers>
+            </Label>
+
+            <controls:CircleCountdown 
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="10"
+                    Progress="{Binding Progress}"
+                    ProgressStartColor="White"
+                    ProgressEndColor="White"
+                    StrokeWidth="10"/>
+
+            <controls:CircleCountdown 
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="16"
+                    Progress="{Binding ProgressMin}"
+                    ProgressStartColor="Pink"
+                    ProgressEndColor="Yellow"
+                    StrokeWidth="10"
+                    FlowDirection="LeftToRight"                     
+                />
+        </Grid>
+
+        <StackLayout Grid.Row="2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Label x:Name="lableDefault"
+                   Text="{Binding DefaultMinutes}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   WidthRequest="120"
+                   HeightRequest="80"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   BackgroundColor="Red"
+                   TextColor="White"
+                   FontSize="50">
+                <Label.GestureRecognizers>
+                    <SwipeGestureRecognizer Direction="Right" Swiped="OnLableSwiped"/>
+                    <SwipeGestureRecognizer Direction="Up" Swiped="OnLableSwiped"/>
+                    <SwipeGestureRecognizer Direction="Down" Swiped="OnLableSwiped"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </StackLayout>
+    </Grid>
+
+</ContentPage>
