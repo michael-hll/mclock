@@ -1,0 +1,13 @@
+
+.vs/
+mClock.Android/bin
+mClock.Android/obj
+mClock.iOS/bin
+mClock.iOS/obj
+mClock/bin
+mClock/obj
+mClock.iOS/Resources/Default@2x.png
+mClock.iOS/Resources/Default.png
+mClock.iOS/Resources/Default-Portrait@2x.png
+mClock.iOS/Resources/Default-Portrait.png
+mClock.iOS/Resources/Default-568h@2x.png
