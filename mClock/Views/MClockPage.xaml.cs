@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using AudioToolbox;
 using mClock.Services;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
@@ -436,8 +435,8 @@ namespace mClock.Views
         void OnDayOfWeek3DoubleTapped(System.Object sender, System.EventArgs e)
         {
             // https://stackoverflow.com/questions/39025809/how-to-play-ios-systemsound-soundid-in-xamarin-ios
-            var sound = new SystemSound(1100);
-            sound.PlaySystemSound();
+            //var sound = new SystemSound(1100);
+            //sound.PlaySystemSound();
         }
 
         void OnDayOfWeek4DoubleTapped(System.Object sender, System.EventArgs e)

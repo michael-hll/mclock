@@ -16,6 +16,7 @@ namespace mClock.ViewModels
         private int _days;
         private int _hours;
         private int _minutes;
+        private int _totalMinutes;
         private double _progress;
         private double _progress_min;
         private int _defaultMinutes;
@@ -44,10 +45,22 @@ namespace mClock.ViewModels
             set => SetProperty(ref _hours, value);
         }
 
+        /**
+         * Remaining Minutes
+         */
         public int Minutes
         {
             get => _minutes;
             set => SetProperty(ref _minutes, value);
+        }
+
+        /**
+         * Total Left Minutes
+         */
+        public int TotalMinutes
+        {
+            get => _totalMinutes;
+            set => SetProperty(ref _totalMinutes, value);
         }
 
         public double Progress
@@ -100,6 +113,7 @@ namespace mClock.ViewModels
             Days = _countdown.RemainTime.Days;
             Hours = _countdown.RemainTime.Hours;
             Minutes = _countdown.RemainTime.Minutes;
+            TotalMinutes = Minutes + 1;
 
             var totalSeconds = (MTimer.Date - MTimer.Creation).TotalSeconds;
             var remainSeconds = _countdown.RemainTime.TotalSeconds;
@@ -112,8 +126,10 @@ namespace mClock.ViewModels
             Days = 0;
             Hours = 0;
             Minutes = 0;
+            TotalMinutes = 0;
 
             Progress = 0;
+            ProgressMin = 0;
         }
 
         void LoadMTimer()
