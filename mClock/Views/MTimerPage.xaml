@@ -71,7 +71,7 @@
                    VerticalTextAlignment="End"
                    FontAttributes="Bold"
                    FontFamily="Baskerville"
-                   TextColor="RoyalBlue">
+                   TextColor="{Binding StateColor}">
                 <Label.GestureRecognizers>
                     <SwipeGestureRecognizer Direction="Right" Swiped="OnLableSwiped"/>
                     <SwipeGestureRecognizer Direction="Up" Swiped="OnLableSwiped"/>

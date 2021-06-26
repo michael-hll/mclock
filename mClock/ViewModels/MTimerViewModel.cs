@@ -40,7 +40,7 @@ namespace mClock.ViewModels
                 else if (Countdown.State == CountdownState.Paused)
                     StateColor = Color.Yellow;
                 else if (Countdown.State == CountdownState.Running)
-                    StateColor = Color.Green;
+                    StateColor = Color.Lime;
             }
         }
 
