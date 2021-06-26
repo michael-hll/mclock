@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using mClock.Models;
@@ -20,12 +21,27 @@ namespace mClock.ViewModels
         private double _progress;
         private double _progress_min;
         private int _defaultMinutes;
+        private Color _stateColor = Color.Red;
 
         public MTimerViewModel()
         {
             _countdown = new Countdown();
+            _countdown.PropertyChanged += Countdown_PropertyChanged;
             _defaultMinutes = MClockPage.MainInstance.MTimerDefaultMins;
             _totalMinutes = MClockPage.MainInstance.MTimerDefaultMins;
+        }
+
+        private void Countdown_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == "State")
+            {
+                if (Countdown.State == CountdownState.Stopped)
+                    StateColor = Color.Red;
+                else if (Countdown.State == CountdownState.Paused)
+                    StateColor = Color.Yellow;
+                else if (Countdown.State == CountdownState.Running)
+                    StateColor = Color.Green;
+            }
         }
 
         public MTimer MTimer
@@ -92,6 +108,12 @@ namespace mClock.ViewModels
             }
         }
 
+        public Color StateColor
+        {
+            get => _stateColor;
+            set => SetProperty(ref _stateColor, value);
+        }
+
         public override Task StartAsync()
         {
             CreateMTimer();
@@ -137,13 +159,8 @@ namespace mClock.ViewModels
 
         void OnCountdownCompleted()
         {
-            Days = 0;
-            Hours = 0;
-            Minutes = 0;
-            TotalMinutes = MClockPage.MainInstance.MTimerDefaultMins;
-
-            Progress = 0;
-            ProgressMin = 0;
+            Countdown.State = CountdownState.Stopped;
+            ResetParameters();
         }
 
         void OnCountdownPaused()
@@ -153,13 +170,17 @@ namespace mClock.ViewModels
 
         void OnCountdownStopped()
         {
+            ResetParameters();
+        }
+
+        void ResetParameters()
+        {
             Days = 0;
             Hours = 0;
             Minutes = 0;
-            TotalMinutes = MClockPage.MainInstance.MTimerDefaultMins;
-
             Progress = 0;
             ProgressMin = 0;
+            TotalMinutes = MClockPage.MainInstance.MTimerDefaultMins;
         }
 
         void CreateMTimer()

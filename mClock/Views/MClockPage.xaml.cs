@@ -38,6 +38,7 @@ namespace mClock.Views
 
         public static ISettings AppSettings => CrossSettings.Current;
         public static MClockPage MainInstance = null;
+        public static MTimerPage TimerPageInstance = null;
 
         public bool Is12Hour
         {
@@ -290,8 +291,9 @@ namespace mClock.Views
             switch (e.Direction)
             {
                 case SwipeDirection.Left:
-                    //await Navigation.PushModalAsync(new NavigationPage(new MTimerPage()), true);
-                    await Navigation.PushAsync(new MTimerPage(), true);
+                    if (TimerPageInstance == null)
+                        TimerPageInstance = new MTimerPage();
+                    await Navigation.PushAsync(TimerPageInstance, true);
                     break;
                 case SwipeDirection.Right:
                     break;

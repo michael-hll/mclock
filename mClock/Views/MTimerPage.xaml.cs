@@ -78,10 +78,10 @@ namespace mClock.Views
             await viewModel?.LoadAsync();
         }
 
-        protected override async void OnDisappearing()
+        protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            await viewModel?.UnloadAsync();
+            //await viewModel?.UnloadAsync();
         }
 
         async void OnTotalMinutesDoubleTapped(System.Object sender, System.EventArgs e)

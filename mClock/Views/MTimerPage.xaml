@@ -19,6 +19,8 @@
         </Grid.RowDefinitions>
         <Label x:Name="lableInfo" Text="" HorizontalOptions="Center" TextColor="White"/>
         <Grid Grid.Row="1"
+              RowSpacing="0"
+              ColumnSpacing="0"
               VerticalOptions="FillAndExpand"
               HorizontalOptions="FillAndExpand"
               BackgroundColor="Black">
@@ -35,28 +37,28 @@
             <controls:CircleCountdown 
                     VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand"
-                    Margin="10"
+                    Margin="0"
                     Progress="1"
-                    ProgressStartColor="White"
-                    ProgressEndColor="White"
-                    StrokeWidth="10"/>
+                    ProgressStartColor="{Binding StateColor}"
+                    ProgressEndColor="{Binding StateColor}"
+                    StrokeWidth="30" BackgroundColor="Transparent"/>
 
             <controls:CircleCountdown 
                     VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand"
-                    Margin="15"
+                    Margin="21"
                     Progress="{Binding Progress}"
-                    ProgressStartColor="Red"
-                    ProgressEndColor="Red"
-                    StrokeWidth="10"/>
+                    ProgressStartColor="LightBlue"
+                    ProgressEndColor="LightBlue"
+                    StrokeWidth="10" BackgroundColor="Transparent"/>
 
             <controls:CircleCountdown 
                     VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand"
-                    Margin="20"
+                    Margin="27"
                     Progress="{Binding ProgressMin}"
-                    ProgressStartColor="Yellow"
-                    ProgressEndColor="Yellow"
+                    ProgressStartColor="Pink"
+                    ProgressEndColor="Pink"
                     StrokeWidth="10"
                     FlowDirection="LeftToRight"/>
 
