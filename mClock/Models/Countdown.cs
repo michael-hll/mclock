@@ -6,9 +6,12 @@ namespace mClock.Models
     public class Countdown : BindableObject
     {
         TimeSpan _remainTime;
+        CountdownState _countdownState = CountdownState.Stopped;
 
         public event Action Completed;
         public event Action Ticked;
+        public event Action Paused;
+        public event Action Stopped;
 
         public DateTime EndDate { get; set; }
 
@@ -23,24 +26,49 @@ namespace mClock.Models
             }
         }
 
-        public void Start(int seconds = 1)
+        public CountdownState State
         {
-            Device.StartTimer(TimeSpan.FromSeconds(seconds), () =>
+            get { return _countdownState; }
+            set
             {
-                RemainTime = (EndDate - DateTime.Now);
+                _countdownState = value;
+                OnPropertyChanged();
+            }
+        }
 
-                var ticked = RemainTime.TotalSeconds > 1;
-
-                if (ticked)
+        public void Start(int milliSeconds = 100)
+        {
+            Device.StartTimer(TimeSpan.FromMilliseconds(milliSeconds), () =>
+            {
+                if (State == CountdownState.Running)
                 {
-                    Ticked?.Invoke();
-                }
-                else
-                {
-                    Completed?.Invoke();
-                }
+                    RemainTime = (EndDate - DateTime.Now);
 
-                return ticked;
+                    var ticked = RemainTime.TotalSeconds > 1;
+
+                    if (ticked)
+                    {
+                        Ticked?.Invoke();
+                    }
+                    else
+                    {
+                        Completed?.Invoke();
+                    }
+
+                    return ticked;
+                }
+                if (State == CountdownState.Paused)
+                {
+                    EndDate = DateTime.Now.Add(RemainTime);
+                    Paused?.Invoke();
+                    return true;
+                }
+                if (State == CountdownState.Stopped)
+                {
+                    Stopped?.Invoke();
+                    return false;
+                }
+                return false;
             });
         }
     }

@@ -17,7 +17,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Label Text="{Binding DefaultMinutes}" HorizontalOptions="Center" TextColor="White"/>
+        <Label x:Name="lableInfo" Text="" HorizontalOptions="Center" TextColor="White"/>
         <Grid Grid.Row="1"
               VerticalOptions="FillAndExpand"
               HorizontalOptions="FillAndExpand"
@@ -62,7 +62,7 @@
 
             <Label
                    Text="{Binding TotalMinutes}"
-                   FontSize="200"
+                   FontSize="180"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
                    HorizontalTextAlignment="Center"
@@ -74,6 +74,8 @@
                     <SwipeGestureRecognizer Direction="Right" Swiped="OnLableSwiped"/>
                     <SwipeGestureRecognizer Direction="Up" Swiped="OnLableSwiped"/>
                     <SwipeGestureRecognizer Direction="Down" Swiped="OnLableSwiped"/>
+                    <TapGestureRecognizer Tapped="OnTotalMinutesDoubleTapped" NumberOfTapsRequired="2" />
+                    <TapGestureRecognizer Tapped="OnTotalMinutesTripleTapped" NumberOfTapsRequired="3" />
                 </Label.GestureRecognizers>
             </Label>
 

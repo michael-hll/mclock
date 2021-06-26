@@ -69,10 +69,10 @@ namespace mClock.Views
             set => AppSettings.AddOrUpdateValue(nameof(DayOfWeekFormatIndex), value);
         }
 
-        public int MTimerMinutes
+        public int MTimerDefaultMins
         {
-            get => AppSettings.GetValueOrDefault(nameof(MTimerMinutes), 25);
-            set => AppSettings.AddOrUpdateValue(nameof(MTimerMinutes), value);
+            get => AppSettings.GetValueOrDefault(nameof(MTimerDefaultMins), 25);
+            set => AppSettings.AddOrUpdateValue(nameof(MTimerDefaultMins), value);
         }
 
         readonly Dictionary<int, string[]> DayOfWeekFormatsDict = new Dictionary<int, string[]>()

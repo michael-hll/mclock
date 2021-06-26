@@ -26,6 +26,11 @@ namespace mClock.ViewModels.Base
             return Task.CompletedTask;
         }
 
+        public virtual Task StartAsync()
+        {
+            return Task.CompletedTask;
+        }
+
         public virtual Task UnloadAsync()
         {
             return Task.CompletedTask;

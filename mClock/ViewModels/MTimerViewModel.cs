@@ -24,13 +24,19 @@ namespace mClock.ViewModels
         public MTimerViewModel()
         {
             _countdown = new Countdown();
-            _defaultMinutes = MClockPage.MainInstance.MTimerMinutes;
+            _defaultMinutes = MClockPage.MainInstance.MTimerDefaultMins;
+            _totalMinutes = MClockPage.MainInstance.MTimerDefaultMins;
         }
 
         public MTimer MTimer
         {
             get => _mtimer;
             set => SetProperty(ref _mtimer, value);
+        }
+
+        public Countdown Countdown
+        {
+            get => _countdown;
         }
 
         public int Days
@@ -81,21 +87,27 @@ namespace mClock.ViewModels
             set
             {
                 SetProperty(ref _defaultMinutes, value);
-                MClockPage.MainInstance.MTimerMinutes = value;
+                TotalMinutes = DefaultMinutes;
+                MClockPage.MainInstance.MTimerDefaultMins = value;
             }
         }
 
-        public ICommand RestartCommand => new Command(Restart);
-
-        public override Task LoadAsync()
+        public override Task StartAsync()
         {
-            LoadMTimer();
+            CreateMTimer();
 
             _countdown.EndDate = MTimer.Date;
             _countdown.Start();
 
+            return base.StartAsync();
+        }
+
+        public override Task LoadAsync()
+        {
             _countdown.Ticked += OnCountdownTicked;
             _countdown.Completed += OnCountdownCompleted;
+            _countdown.Paused += OnCountdownPaused;
+            _countdown.Stopped += OnCountdownStopped;
 
             return base.LoadAsync();
         }
@@ -104,6 +116,8 @@ namespace mClock.ViewModels
         {
             _countdown.Ticked -= OnCountdownTicked;
             _countdown.Completed -= OnCountdownCompleted;
+            _countdown.Paused -= OnCountdownPaused;
+            _countdown.Stopped -= OnCountdownStopped;
 
             return base.UnloadAsync();
         }
@@ -113,12 +127,12 @@ namespace mClock.ViewModels
             Days = _countdown.RemainTime.Days;
             Hours = _countdown.RemainTime.Hours;
             Minutes = _countdown.RemainTime.Minutes;
-            TotalMinutes = Minutes + 1;
+            TotalMinutes = Hours * 60 + Minutes + 1;
 
             var totalSeconds = (MTimer.Date - MTimer.Creation).TotalSeconds;
             var remainSeconds = _countdown.RemainTime.TotalSeconds;
             Progress = remainSeconds / totalSeconds;
-            ProgressMin = (double)(remainSeconds - Minutes * 60) / 60d;
+            ProgressMin = (double)(_countdown.RemainTime.Seconds * 1000 + _countdown.RemainTime.Milliseconds) / (double)(60 * 1000);
         }
 
         void OnCountdownCompleted()
@@ -126,27 +140,41 @@ namespace mClock.ViewModels
             Days = 0;
             Hours = 0;
             Minutes = 0;
-            TotalMinutes = 0;
+            TotalMinutes = MClockPage.MainInstance.MTimerDefaultMins;
 
             Progress = 0;
             ProgressMin = 0;
         }
 
-        void LoadMTimer()
+        void OnCountdownPaused()
         {
+
+        }
+
+        void OnCountdownStopped()
+        {
+            Days = 0;
+            Hours = 0;
+            Minutes = 0;
+            TotalMinutes = MClockPage.MainInstance.MTimerDefaultMins;
+
+            Progress = 0;
+            ProgressMin = 0;
+        }
+
+        void CreateMTimer()
+        {
+            int hours = MClockPage.MainInstance.MTimerDefaultMins / 60;
+            int mins = MClockPage.MainInstance.MTimerDefaultMins - hours * 60;
             var mtimer = new MTimer()
             {
                 Picture = "mtimer_bg",
-                Date = DateTime.Now + new TimeSpan(0, 0, MClockPage.MainInstance.MTimerMinutes, 0),
+                Date = DateTime.Now + new TimeSpan(0, hours, mins, 0),
+
                 Creation = DateTime.Now
             };
 
             MTimer = mtimer;
-        }
-
-        void Restart()
-        {
-            Debug.WriteLine("Restart");
         }
     }
 }
