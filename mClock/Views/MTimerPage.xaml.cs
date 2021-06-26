@@ -18,6 +18,12 @@ namespace mClock.Views
 
             viewModel = new MTimerViewModel();
             BindingContext = viewModel;
+            timerGrid.SizeChanged += TimerGrid_SizeChanged;
+        }
+
+        private void TimerGrid_SizeChanged(object sender, EventArgs e)
+        {
+            timerGrid.WidthRequest = timerGrid.Height;
         }
 
         async void OnLableSwiped(System.Object sender, SwipedEventArgs e)
