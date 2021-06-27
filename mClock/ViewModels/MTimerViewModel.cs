@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using mClock.Models;
+using mClock.Services;
 using mClock.ViewModels.Base;
 using mClock.Views;
 using Xamarin.Forms;
@@ -21,7 +22,8 @@ namespace mClock.ViewModels
         private double _progress;
         private double _progress_min;
         private int _defaultMinutes;
-        private Color _stateColor = Color.Red;
+        private double _timerFontSize;
+        private Color _stateColor;
 
         public MTimerViewModel()
         {
@@ -29,6 +31,8 @@ namespace mClock.ViewModels
             _countdown.PropertyChanged += Countdown_PropertyChanged;
             _defaultMinutes = MClockPage.MainInstance.MTimerDefaultMins;
             _totalMinutes = MClockPage.MainInstance.MTimerDefaultMins;
+            _timerFontSize = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Height / 6.5;
+            _stateColor = Color.Red;
         }
 
         private void Countdown_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -114,6 +118,12 @@ namespace mClock.ViewModels
             set => SetProperty(ref _stateColor, value);
         }
 
+        public Double TimerFontSize
+        {
+            get => _timerFontSize;
+            set => SetProperty(ref _timerFontSize, value);
+        }
+
         public override Task StartAsync()
         {
             CreateMTimer();
@@ -160,6 +170,7 @@ namespace mClock.ViewModels
         void OnCountdownCompleted()
         {
             Countdown.State = CountdownState.Stopped;
+            DependencyService.Get<IPlaySoundService>().PlaySystemSound(1005);
             ResetParameters();
         }
 

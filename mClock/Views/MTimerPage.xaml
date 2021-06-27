@@ -72,13 +72,13 @@
 
             <Label
                    Text="{Binding TotalMinutes}"
-                   FontSize="180"
+                   FontSize="{Binding TimerFontSize}"
                    HorizontalOptions="Center"
                    VerticalOptions="Center"
                    HorizontalTextAlignment="Center"
                    VerticalTextAlignment="End"
                    FontAttributes="Bold"
-                   FontFamily="Baskerville"
+                   FontFamily="Arial"
                    TextColor="{Binding StateColor}">
                 <Label.GestureRecognizers>
                     <SwipeGestureRecognizer Direction="Right" Swiped="OnLableSwiped"/>
