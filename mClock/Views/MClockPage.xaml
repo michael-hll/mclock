@@ -131,8 +131,8 @@
                 </Frame>
             </Grid>
 
-            <Label x:Name="lablePartOfDay" Grid.Column="0" Grid.Row="2" Text="AM" FontSize="25" HorizontalOptions="End" VerticalOptions="Start" FontFamily="Copperplate" FontAttributes="Bold" TextColor="WhiteSmoke" BackgroundColor="Transparent"
-                       VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,10,10,0"/>
+            <Label x:Name="lablePartOfDay" Grid.Column="0" Grid.Row="2" Text="AM" FontSize="20" HorizontalOptions="End" VerticalOptions="Start" FontFamily="Copperplate" FontAttributes="Bold" TextColor="WhiteSmoke" BackgroundColor="Transparent"
+                       VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,20,10,0"/>
 
             <Label x:Name="lableHour" Grid.Row="2" Grid.Column="1" Text="00" FontSize="200" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="digital-7" FontAttributes="Bold" TextColor="CadetBlue"
                    HorizontalTextAlignment="Center">

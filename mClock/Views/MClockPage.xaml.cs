@@ -175,7 +175,7 @@ namespace mClock.Views
 
                         lableMinute.Text = now.Minute.ToString("00");
                         lableSecond.Text = now.Second.ToString("00");
-                        lablePartOfDay.Text = now.ToString("tt", CultureInfo.InvariantCulture);
+                        lablePartOfDay.Text = now.ToString("tt");
 
                         UpdateDayOfWeekText();
                         UpdateDayOfWeekVisibility(now);

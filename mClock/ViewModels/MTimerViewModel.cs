@@ -23,6 +23,7 @@ namespace mClock.ViewModels
         private double _progress_min;
         private int _defaultMinutes;
         private double _timerFontSize;
+        private string _currTime;
         private Color _stateColor;
 
         public MTimerViewModel()
@@ -32,6 +33,7 @@ namespace mClock.ViewModels
             _defaultMinutes = MClockPage.MainInstance.MTimerDefaultMins;
             _totalMinutes = MClockPage.MainInstance.MTimerDefaultMins;
             _timerFontSize = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Height / 6.5;
+            _currTime = DateTime.Now.ToString("h:mm tt");
             _stateColor = Color.Red;
         }
 
@@ -110,6 +112,12 @@ namespace mClock.ViewModels
                 TotalMinutes = DefaultMinutes;
                 MClockPage.MainInstance.MTimerDefaultMins = value;
             }
+        }
+
+        public string CurrentTime
+        {
+            get => _currTime;
+            set => SetProperty(ref _currTime, value);
         }
 
         public Color StateColor

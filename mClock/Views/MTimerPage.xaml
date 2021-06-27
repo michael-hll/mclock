@@ -15,7 +15,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="0" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="0" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <Grid x:Name="timerGrid"
@@ -52,6 +52,17 @@
                     VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand"
                     Margin="0"
+                    Progress="1"
+                    ProgressStartColor="#333333"
+                    ProgressEndColor="#333333"
+                    StrokeWidth="10"
+                    CircleMargin="42"
+                    BackgroundColor="Transparent"/>
+
+            <controls:CircleCountdown 
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="0"
                     Progress="{Binding Progress}"
                     ProgressStartColor="LightBlue"
                     ProgressEndColor="LightBlue"
@@ -63,12 +74,31 @@
                     VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand"
                     Margin="0"
+                    Progress="1"
+                    ProgressStartColor="#1a1a1a"
+                    ProgressEndColor="#1a1a1a"
+                    StrokeWidth="10"
+                    CircleMargin="54"
+                    FlowDirection="LeftToRight"/>
+
+            <controls:CircleCountdown 
+                    VerticalOptions="FillAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Margin="0"
                     Progress="{Binding ProgressMin}"
                     ProgressStartColor="Pink"
                     ProgressEndColor="Pink"
                     StrokeWidth="10"
                     CircleMargin="54"
-                    FlowDirection="LeftToRight"/>
+                    FlowDirection="LeftToRight">
+                <controls:CircleCountdown.GestureRecognizers>
+                    <SwipeGestureRecognizer Direction="Right" Swiped="OnLableSwiped"/>
+                    <SwipeGestureRecognizer Direction="Up" Swiped="OnLableSwiped"/>
+                    <SwipeGestureRecognizer Direction="Down" Swiped="OnLableSwiped"/>
+                    <TapGestureRecognizer Tapped="OnTotalMinutesDoubleTapped" NumberOfTapsRequired="2" />
+                    <TapGestureRecognizer Tapped="OnTotalMinutesTripleTapped" NumberOfTapsRequired="3" />
+                </controls:CircleCountdown.GestureRecognizers>
+            </controls:CircleCountdown>
 
             <Label
                    Text="{Binding TotalMinutes}"
@@ -90,6 +120,16 @@
             </Label>
 
         </Grid>
+
+        <Label x:Name="lableTime"
+               Grid.Row="2"
+               Text="{Binding CurrentTime}"
+               TextColor="White"
+               FontSize="15"
+               HorizontalOptions="Center"
+               VerticalOptions="Center"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center"/>
     </Grid>
 
 </ContentPage>

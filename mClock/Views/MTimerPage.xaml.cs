@@ -18,6 +18,12 @@ namespace mClock.Views
 
             viewModel = new MTimerViewModel();
             BindingContext = viewModel;
+
+            Device.StartTimer(TimeSpan.FromMilliseconds(1000), () =>
+            {
+                viewModel.CurrentTime = DateTime.Now.ToString("h:mm tt");
+                return true;
+            });
         }
 
         async void OnLableSwiped(System.Object sender, SwipedEventArgs e)
