@@ -9,6 +9,9 @@ namespace mClock.Controls
         public static readonly BindableProperty StrokeWidthProperty =
             BindableProperty.Create(nameof(StrokeWidth), typeof(float), typeof(CircleCountdown), 10f, propertyChanged: OnPropertyChanged);
 
+        public static readonly BindableProperty CircleMarginProperty =
+            BindableProperty.Create(nameof(CircleMargin), typeof(float), typeof(CircleCountdown), 10f, propertyChanged: OnPropertyChanged);
+
         public static readonly BindableProperty ProgressProperty =
             BindableProperty.Create(nameof(Progress), typeof(float), typeof(CircleCountdown), 0f, propertyChanged: OnPropertyChanged);
 
@@ -25,6 +28,12 @@ namespace mClock.Controls
         {
             get { return (float)GetValue(StrokeWidthProperty); }
             set { SetValue(StrokeWidthProperty, value); }
+        }
+
+        public float CircleMargin
+        {
+            get { return (float)GetValue(CircleMarginProperty); }
+            set { SetValue(CircleMarginProperty, value); }
         }
 
         public float Progress
@@ -54,6 +63,7 @@ namespace mClock.Controls
             int size = Math.Min(info.Width, info.Height);
             int max = Math.Max(info.Width, info.Height);
 
+            // Translate square left/upper coordinate
             canvas.Translate((max - size) / 2, 0);
 
             canvas.Clear();
@@ -105,16 +115,16 @@ namespace mClock.Controls
         private void DrawCircle(SKImageInfo info, SKCanvas canvas, SKPaint paint, float angle)
         {
             int size = Math.Min(info.Width, info.Height);
-            float halfWidth = size / 2;
-            float halfHeight = size / 2;
+            //float halfWidth = size / 2;
+            //float halfHeight = size / 2;
 
             using (SKPath path = new SKPath())
             {
                 SKRect rect = new SKRect(
-                    StrokeWidth,
-                    StrokeWidth,
-                    size - StrokeWidth,
-                    size - StrokeWidth);
+                    StrokeWidth + CircleMargin,
+                    StrokeWidth + CircleMargin,
+                    size - StrokeWidth - CircleMargin,
+                    size - StrokeWidth - CircleMargin);
 
                 path.AddArc(rect, StartAngle, angle);
 

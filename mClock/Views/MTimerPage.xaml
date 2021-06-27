@@ -44,25 +44,30 @@
                     Progress="1"
                     ProgressStartColor="{Binding StateColor}"
                     ProgressEndColor="{Binding StateColor}"
-                    StrokeWidth="30" BackgroundColor="Transparent"/>
+                    StrokeWidth="30"
+                    CircleMargin="0"
+                    BackgroundColor="Transparent"/>
 
             <controls:CircleCountdown 
                     VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand"
-                    Margin="21"
+                    Margin="0"
                     Progress="{Binding Progress}"
                     ProgressStartColor="LightBlue"
                     ProgressEndColor="LightBlue"
-                    StrokeWidth="10" BackgroundColor="Transparent"/>
+                    StrokeWidth="10"
+                    CircleMargin="42"
+                    BackgroundColor="Transparent"/>
 
             <controls:CircleCountdown 
                     VerticalOptions="FillAndExpand"
                     HorizontalOptions="FillAndExpand"
-                    Margin="27"
+                    Margin="0"
                     Progress="{Binding ProgressMin}"
                     ProgressStartColor="Pink"
                     ProgressEndColor="Pink"
                     StrokeWidth="10"
+                    CircleMargin="54"
                     FlowDirection="LeftToRight"/>
 
             <Label

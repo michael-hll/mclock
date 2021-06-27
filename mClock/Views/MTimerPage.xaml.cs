@@ -18,12 +18,6 @@ namespace mClock.Views
 
             viewModel = new MTimerViewModel();
             BindingContext = viewModel;
-            timerGrid.SizeChanged += TimerGrid_SizeChanged;
-        }
-
-        private void TimerGrid_SizeChanged(object sender, EventArgs e)
-        {
-            timerGrid.WidthRequest = timerGrid.Height;
         }
 
         async void OnLableSwiped(System.Object sender, SwipedEventArgs e)
@@ -87,7 +81,6 @@ namespace mClock.Views
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            //await viewModel?.UnloadAsync();
         }
 
         async void OnTotalMinutesDoubleTapped(System.Object sender, System.EventArgs e)
