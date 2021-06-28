@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="mClock.Views.MClockPage"
     Shell.NavBarIsVisible="False"
-    BackgroundColor="{StaticResource HighLightDayOfWeekBackground1}">
+    BackgroundColor="{DynamicResource PageBackgroundColor}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -15,7 +15,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <StackLayout x:Name="stackLayout" Padding="50,0" Orientation="Vertical" BackgroundColor="{StaticResource HighLightDayOfWeekBackground1}" Spacing="0" VerticalOptions="Center">
+    <StackLayout x:Name="stackLayout" Padding="50,0" Orientation="Vertical" BackgroundColor="{DynamicResource PageBackgroundColor}" Spacing="0" VerticalOptions="Center">
         <Grid RowSpacing="0" ColumnSpacing="0" VerticalOptions="Center" HorizontalOptions="Center" Margin="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -52,9 +52,9 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
 
-                <Frame x:Name="frameDayOfWeek1" Grid.Column="1" Padding="0,3,0,0" Margin="0" HasShadow="False" CornerRadius="2" BorderColor="{StaticResource DayOfWeekBorder}"  BackgroundColor="{StaticResource HighLightDayOfWeekBackground1}" HorizontalOptions="FillAndExpand">
+                <Frame x:Name="frameDayOfWeek1" Grid.Column="1" Padding="0,3,0,0" Margin="0" HasShadow="False" CornerRadius="2" BorderColor="{DynamicResource WeekBorderColor}"  BackgroundColor="{DynamicResource Week1to5BackgroundColor}" HorizontalOptions="FillAndExpand">
 
-                    <Label x:Name="lableDayOfWeek1" Text="MON" FontSize="20" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontFamily="Courier" FontAttributes="Bold" TextColor="{StaticResource HighLightDayOfWeekTextColor}"
+                    <Label x:Name="lableDayOfWeek1" Text="MON" FontSize="20" Padding="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontFamily="Courier" FontAttributes="Bold" TextColor="{DynamicResource Week1to5TextColor}"
                            HorizontalTextAlignment="Center" VerticalTextAlignment="Start">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnDayOfWeek1DoubleTapped" NumberOfTapsRequired="2"/>
@@ -63,9 +63,9 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </Frame>
-                <Frame x:Name="frameDayOfWeek2" Grid.Column="2" Padding="0,3,0,0" HasShadow="False" CornerRadius="2" BorderColor="{StaticResource DayOfWeekBorder}"  BackgroundColor="{StaticResource HighLightDayOfWeekBackground1}" HorizontalOptions="FillAndExpand">
+                <Frame x:Name="frameDayOfWeek2" Grid.Column="2" Padding="0,3,0,0" HasShadow="False" CornerRadius="2" BorderColor="{DynamicResource WeekBorderColor}"  BackgroundColor="{DynamicResource Week1to5BackgroundColor}" HorizontalOptions="FillAndExpand">
 
-                    <Label x:Name="lableDayOfWeek2" Text="TUE" FontSize="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontFamily="Courier" FontAttributes="Bold" TextColor="{StaticResource HighLightDayOfWeekTextColor}"
+                    <Label x:Name="lableDayOfWeek2" Text="TUE" FontSize="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontFamily="Courier" FontAttributes="Bold" TextColor="{DynamicResource Week1to5TextColor}"
                            HorizontalTextAlignment="Center" VerticalTextAlignment="End">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnDayOfWeek2DoubleTapped" NumberOfTapsRequired="2"/>
@@ -74,9 +74,9 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </Frame>
-                <Frame x:Name="frameDayOfWeek3" Grid.Column="3" Padding="0,3,0,0" HasShadow="False" CornerRadius="2" BorderColor="{StaticResource DayOfWeekBorder}"  BackgroundColor="{StaticResource HighLightDayOfWeekBackground1}" HorizontalOptions="FillAndExpand">
+                <Frame x:Name="frameDayOfWeek3" Grid.Column="3" Padding="0,3,0,0" HasShadow="False" CornerRadius="2" BorderColor="{DynamicResource WeekBorderColor}"  BackgroundColor="{DynamicResource Week1to5BackgroundColor}" HorizontalOptions="FillAndExpand">
 
-                    <Label x:Name="lableDayOfWeek3" Text="WED" FontSize="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontFamily="Courier" FontAttributes="Bold" TextColor="{StaticResource HighLightDayOfWeekTextColor}"
+                    <Label x:Name="lableDayOfWeek3" Text="WED" FontSize="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontFamily="Courier" FontAttributes="Bold" TextColor="{DynamicResource Week1to5TextColor}"
                            HorizontalTextAlignment="Center" VerticalTextAlignment="End">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnDayOfWeek3DoubleTapped" NumberOfTapsRequired="2"/>
@@ -85,9 +85,9 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </Frame>
-                <Frame x:Name="frameDayOfWeek4" Grid.Column="4" Padding="0,3,0,0" HasShadow="False" CornerRadius="2" BorderColor="{StaticResource DayOfWeekBorder}"  BackgroundColor="{StaticResource HighLightDayOfWeekBackground1}" HorizontalOptions="FillAndExpand">
+                <Frame x:Name="frameDayOfWeek4" Grid.Column="4" Padding="0,3,0,0" HasShadow="False" CornerRadius="2" BorderColor="{DynamicResource WeekBorderColor}"  BackgroundColor="{DynamicResource Week1to5BackgroundColor}" HorizontalOptions="FillAndExpand">
 
-                    <Label x:Name="lableDayOfWeek4" Text="THU" FontSize="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontFamily="Courier" FontAttributes="Bold" TextColor="{StaticResource HighLightDayOfWeekTextColor}"
+                    <Label x:Name="lableDayOfWeek4" Text="THU" FontSize="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontFamily="Courier" FontAttributes="Bold" TextColor="{DynamicResource Week1to5TextColor}"
                            HorizontalTextAlignment="Center" VerticalTextAlignment="End">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnDayOfWeek4DoubleTapped" NumberOfTapsRequired="2"/>
@@ -96,9 +96,9 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </Frame>
-                <Frame x:Name="frameDayOfWeek5" Grid.Column="5" Padding="0,3,0,0" HasShadow="False" CornerRadius="2" BorderColor="{StaticResource DayOfWeekBorder}"  BackgroundColor="{StaticResource HighLightDayOfWeekBackground1}" HorizontalOptions="FillAndExpand">
+                <Frame x:Name="frameDayOfWeek5" Grid.Column="5" Padding="0,3,0,0" HasShadow="False" CornerRadius="2" BorderColor="{DynamicResource WeekBorderColor}"  BackgroundColor="{DynamicResource Week1to5BackgroundColor}" HorizontalOptions="FillAndExpand">
 
-                    <Label x:Name="lableDayOfWeek5" Text="FRI" FontSize="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontFamily="Courier" FontAttributes="Bold" TextColor="{StaticResource HighLightDayOfWeekTextColor}"
+                    <Label x:Name="lableDayOfWeek5" Text="FRI" FontSize="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontFamily="Courier" FontAttributes="Bold" TextColor="{DynamicResource Week1to5TextColor}"
                            HorizontalTextAlignment="Center" VerticalTextAlignment="End">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnDayOfWeek5DoubleTapped" NumberOfTapsRequired="2"/>
@@ -107,9 +107,9 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </Frame>
-                <Frame x:Name="frameDayOfWeek6" Grid.Column="6" Padding="0,3,0,0" HasShadow="False" CornerRadius="2" BorderColor="{StaticResource DayOfWeekBorder}"  BackgroundColor="{StaticResource HighLightDayOfWeekBackground2}" HorizontalOptions="FillAndExpand">
+                <Frame x:Name="frameDayOfWeek6" Grid.Column="6" Padding="0,3,0,0" HasShadow="False" CornerRadius="2" BorderColor="{DynamicResource WeekBorderColor}"  BackgroundColor="{DynamicResource Week6to7BackgroundColor}" HorizontalOptions="FillAndExpand">
 
-                    <Label x:Name="lableDayOfWeek6" Text="SAT" FontSize="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontFamily="Courier" FontAttributes="Bold" TextColor="{StaticResource HighLightDayOfWeekTextColor}"
+                    <Label x:Name="lableDayOfWeek6" Text="SAT" FontSize="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontFamily="Courier" FontAttributes="Bold" TextColor="{DynamicResource Week6to7TextColor}"
                            HorizontalTextAlignment="Center" VerticalTextAlignment="End">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnDayOfWeek6DoubleTapped" NumberOfTapsRequired="2"/>
@@ -118,9 +118,9 @@
                         </Label.GestureRecognizers>
                     </Label>
                 </Frame>
-                <Frame x:Name="frameDayOfWeek7" Grid.Column="7" Padding="0,3,0,0" HasShadow="False" CornerRadius="2" BorderColor="{StaticResource DayOfWeekBorder}"  BackgroundColor="{StaticResource HighLightDayOfWeekBackground2}" HorizontalOptions="FillAndExpand">
+                <Frame x:Name="frameDayOfWeek7" Grid.Column="7" Padding="0,3,0,0" HasShadow="False" CornerRadius="2" BorderColor="{DynamicResource WeekBorderColor}"  BackgroundColor="{DynamicResource Week6to7BackgroundColor}" HorizontalOptions="FillAndExpand">
 
-                    <Label x:Name="lableDayOfWeek7" Text="SUN" FontSize="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontFamily="Courier" FontAttributes="Bold" TextColor="{StaticResource HighLightDayOfWeekTextColor}"
+                    <Label x:Name="lableDayOfWeek7" Text="SUN" FontSize="20" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" FontFamily="Courier" FontAttributes="Bold" TextColor="{DynamicResource Week6to7TextColor}"
                            HorizontalTextAlignment="Center" VerticalTextAlignment="End">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnDayOfWeek7DoubleTapped" NumberOfTapsRequired="2"/>
@@ -131,10 +131,12 @@
                 </Frame>
             </Grid>
 
-            <Label x:Name="lablePartOfDay" Grid.Column="0" Grid.Row="2" Text="AM" FontSize="20" HorizontalOptions="End" VerticalOptions="Start" FontFamily="Copperplate" FontAttributes="Bold" TextColor="WhiteSmoke" BackgroundColor="Transparent"
+            <Label x:Name="lablePartOfDay" Grid.Column="0" Grid.Row="2" Text="AM" FontSize="20" HorizontalOptions="End" VerticalOptions="Start" FontFamily="Copperplate" FontAttributes="Bold"
+                   TextColor="{DynamicResource PartOfDateTextColor}" BackgroundColor="Transparent"
                        VerticalTextAlignment="Center" HorizontalTextAlignment="Center" Margin="0,20,10,0"/>
 
-            <Label x:Name="lableHour" Grid.Row="2" Grid.Column="1" Text="00" FontSize="200" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="digital-7" FontAttributes="Bold" TextColor="CadetBlue"
+            <Label x:Name="lableHour" Grid.Row="2" Grid.Column="1" Text="00" FontSize="200" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="digital-7" FontAttributes="Bold"
+                   TextColor="{DynamicResource HourTextColor}"
                    HorizontalTextAlignment="Center">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnHourDoubleTapped" NumberOfTapsRequired="2"/>
@@ -145,10 +147,12 @@
                 </Label.GestureRecognizers>
             </Label>
 
-            <Label x:Name="lableColonOne" Grid.Row="2" Grid.Column="2" Text=" " FontSize="50" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="digital-7" FontAttributes="Bold" TextColor="White"
+            <Label x:Name="lableColonOne" Grid.Row="2" Grid.Column="2" Text=" " FontSize="50" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="digital-7" FontAttributes="Bold"
+                   TextColor="White"
                    VerticalTextAlignment="Center" HorizontalTextAlignment="Center"/>
 
-            <Label x:Name="lableMinute" Grid.Row="2" Grid.Column="3" Text="00" FontSize="200" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="digital-7" FontAttributes="Bold" TextColor="GreenYellow"
+            <Label x:Name="lableMinute" Grid.Row="2" Grid.Column="3" Text="00" FontSize="200" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="digital-7" FontAttributes="Bold"
+                   TextColor="{DynamicResource MinuteTextColor}"
                    HorizontalTextAlignment="Center">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnMinuteDoubleTapped" NumberOfTapsRequired="2"/>
@@ -163,11 +167,15 @@
 
             <RelativeLayout x:Name="relativeLayoutRight" Grid.Row="2" Grid.RowSpan="1" Grid.Column="5" Padding="0" Margin="0" HorizontalOptions="Fill" VerticalOptions="Fill" BackgroundColor="Transparent">
 
-                <Label x:Name="lableSecond" Text="00" FontSize="90" HorizontalOptions="Center" VerticalOptions="End" FontFamily="digital-7" FontAttributes="Bold" TextColor="Yellow" BackgroundColor="Transparent"
+                <Label x:Name="lableSecond" Text="00" FontSize="90" HorizontalOptions="Center" VerticalOptions="End" FontFamily="digital-7" FontAttributes="Bold"
+                       TextColor="{DynamicResource SecondsTextColor}"
+                       BackgroundColor="Transparent"
                        VerticalTextAlignment="End" HorizontalTextAlignment="Center"/>
             </RelativeLayout>
 
-            <Label x:Name="lableDate" Grid.Column="0" Grid.ColumnSpan="6" Grid.Row="3" Text="Jun 19, 2021" TextColor="White" HorizontalOptions="Center" FontSize="30" FontFamily="Copperplate">
+            <Label x:Name="lableDate" Grid.Column="0" Grid.ColumnSpan="6" Grid.Row="3" Text="Jun 19, 2021"
+                   TextColor="{DynamicResource DateTextColor}"
+                   HorizontalOptions="Center" FontSize="30" FontFamily="Copperplate">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnDateDoubleTapped" NumberOfTapsRequired="2"/>
                     <SwipeGestureRecognizer Direction="Left" Swiped="OnDateSwiped"/>

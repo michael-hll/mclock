@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="mClock.Themes.DarkTheme">
+
+    <Color x:Key="PageBackgroundColor">Black</Color>
+    <Color x:Key="Week1to5BackgroundColor">Black</Color>
+    <Color x:Key="Week6to7BackgroundColor">Red</Color>
+    <Color x:Key="Week1to5TextColor">White</Color>
+    <Color x:Key="Week6to7TextColor">White</Color>
+    <Color x:Key="WeekBorderColor">White</Color>
+    <Color x:Key="HourTextColor">Teal</Color>
+    <Color x:Key="MinuteTextColor">Lime</Color>
+    <Color x:Key="PartOfDateTextColor">White</Color>
+    <Color x:Key="SecondsTextColor">Yellow</Color>
+    <Color x:Key="DateTextColor">White</Color>
+
+</ResourceDictionary>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using mClock.Services;
+using mClock.Themes;
 using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 using Xamarin.Essentials;
@@ -15,6 +16,10 @@ namespace mClock.Views
         const double DAY_OF_WEEK_OPACITY_HIDE = 0.2;
         const string HighLightDayOfWeekBackground1 = "HighLightDayOfWeekBackground1";
         const string HighLightDayOfWeekBackground2 = "HighLightDayOfWeekBackground2";
+        ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
+        ResourceDictionary CurrentTheme = new DarkTheme();
+        DarkTheme DarkTheme = new DarkTheme();
+        LightTheme LightTheme = new LightTheme();
 
         public static readonly string[] DateFormats = {
             "MMM dd, yyyy",
@@ -27,6 +32,11 @@ namespace mClock.Views
             "MM/dd",
             "dd/MM/yyyy",
             "dd/MM"
+        };
+
+        public static readonly string[] Themes = {
+            "DarkTheme",
+            "LightTheme"
         };
 
         public static readonly string[] WeekDaysNormalCap = { "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN" };
@@ -74,6 +84,12 @@ namespace mClock.Views
         {
             get => AppSettings.GetValueOrDefault(nameof(MTimerDefaultMins), 25);
             set => AppSettings.AddOrUpdateValue(nameof(MTimerDefaultMins), value);
+        }
+
+        public int ThemeIndex
+        {
+            get => AppSettings.GetValueOrDefault(nameof(ThemeIndex), 0);
+            set => AppSettings.AddOrUpdateValue(nameof(ThemeIndex), value);
         }
 
         readonly Dictionary<int, string[]> DayOfWeekFormatsDict = new Dictionary<int, string[]>()
@@ -125,9 +141,19 @@ namespace mClock.Views
         {
             InitializeComponent();
             MainInstance = this;
+
+            // loading themes
+            UpdateMergedDictionaries();
         }
 
         bool HasDayOfWeekTextChanged { get; set; }
+
+        void UpdateMergedDictionaries()
+        {
+            if (mergedDictionaries != null) mergedDictionaries.Clear();
+            CurrentTheme = GetCurrentTheme();
+            mergedDictionaries.Add(CurrentTheme);
+        }
 
         void InitiUIControls()
         {
@@ -270,8 +296,16 @@ namespace mClock.Views
             switch (e.Direction)
             {
                 case SwipeDirection.Left:
+                    ThemeIndex--;
+                    if (ThemeIndex < 0) ThemeIndex = Themes.Length - 1;
+                    UpdateMergedDictionaries();
+                    UpdateSpecialDayOfWeekColors();
                     break;
                 case SwipeDirection.Right:
+                    ThemeIndex++;
+                    if (ThemeIndex == Themes.Length) ThemeIndex = 0;
+                    UpdateMergedDictionaries();
+                    UpdateSpecialDayOfWeekColors();
                     break;
                 case SwipeDirection.Up:
                     if (current <= 0.8)
@@ -350,25 +384,7 @@ namespace mClock.Views
                 frameDayOfWeek6.Padding = DayOfWeekFramePadding;
                 frameDayOfWeek7.Padding = DayOfWeekFramePadding;
 
-                try
-                {
-                    if (IsSundayFirstDay)
-                    {
-                        frameDayOfWeek1.BackgroundColor = (Color)this.Resources[HighLightDayOfWeekBackground2];
-                        frameDayOfWeek6.BackgroundColor = (Color)this.Resources[HighLightDayOfWeekBackground1];
-                        frameDayOfWeek7.BackgroundColor = (Color)this.Resources[HighLightDayOfWeekBackground2];
-                    }
-                    else
-                    {
-                        frameDayOfWeek1.BackgroundColor = (Color)this.Resources[HighLightDayOfWeekBackground1];
-                        frameDayOfWeek6.BackgroundColor = (Color)this.Resources[HighLightDayOfWeekBackground2];
-                        frameDayOfWeek7.BackgroundColor = (Color)this.Resources[HighLightDayOfWeekBackground2];
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Exception in method UpdateDayOfWeekText:" + ex.Message);
-                }
+                UpdateSpecialDayOfWeekColors();
 
                 HasDayOfWeekTextChanged = false;
             }
@@ -384,6 +400,35 @@ namespace mClock.Views
             frameDayOfWeek5.Opacity = (GetMappingDayOfWeekIndex(5) == dayOfWeek) ? DAY_OF_WEEK_OPACITY_SHOW : DAY_OF_WEEK_OPACITY_HIDE;
             frameDayOfWeek6.Opacity = (GetMappingDayOfWeekIndex(6) == dayOfWeek) ? DAY_OF_WEEK_OPACITY_SHOW : DAY_OF_WEEK_OPACITY_HIDE;
             frameDayOfWeek7.Opacity = (GetMappingDayOfWeekIndex(7) == dayOfWeek) ? DAY_OF_WEEK_OPACITY_SHOW : DAY_OF_WEEK_OPACITY_HIDE;
+        }
+
+        void UpdateSpecialDayOfWeekColors()
+        {
+            try
+            {
+                if (IsSundayFirstDay)
+                {
+                    frameDayOfWeek1.BackgroundColor = (Color)CurrentTheme[ThemeKeys.Week6to7BackgroundColor];
+                    frameDayOfWeek6.BackgroundColor = (Color)CurrentTheme[ThemeKeys.Week1to5BackgroundColor];
+                    frameDayOfWeek7.BackgroundColor = (Color)CurrentTheme[ThemeKeys.Week6to7BackgroundColor];
+                    lableDayOfWeek1.TextColor = (Color)CurrentTheme[ThemeKeys.Week6to7TextColor];
+                    lableDayOfWeek6.TextColor = (Color)CurrentTheme[ThemeKeys.Week1to5TextColor];
+                    lableDayOfWeek7.TextColor = (Color)CurrentTheme[ThemeKeys.Week6to7TextColor];
+                }
+                else
+                {
+                    frameDayOfWeek1.BackgroundColor = (Color)CurrentTheme[ThemeKeys.Week1to5BackgroundColor];
+                    frameDayOfWeek6.BackgroundColor = (Color)CurrentTheme[ThemeKeys.Week6to7BackgroundColor];
+                    frameDayOfWeek7.BackgroundColor = (Color)CurrentTheme[ThemeKeys.Week6to7BackgroundColor];
+                    lableDayOfWeek1.TextColor = (Color)CurrentTheme[ThemeKeys.Week1to5TextColor];
+                    lableDayOfWeek6.TextColor = (Color)CurrentTheme[ThemeKeys.Week6to7TextColor];
+                    lableDayOfWeek7.TextColor = (Color)CurrentTheme[ThemeKeys.Week6to7TextColor];
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Exception in method UpdateDayOfWeekText:" + ex.Message);
+            }
         }
 
         void UpdateDateLabelText()
@@ -483,6 +528,20 @@ namespace mClock.Views
         {
             // app version
             return DependencyService.Get<IAppVersionAndBuild>().GetAppVersion();
+        }
+
+        ResourceDictionary GetCurrentTheme()
+        {
+            switch (Themes[ThemeIndex])
+            {
+                case "DarkTheme":
+                    return DarkTheme;
+                case "LightTheme":
+                    return LightTheme;
+                default:
+                    break;
+            }
+            return null;
         }
 
     }

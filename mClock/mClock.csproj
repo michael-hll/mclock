@@ -16,6 +16,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Remove="digital-7 %28mono%29.ttf" />
+    <None Remove="Themes\" />
+    <None Remove="Utility\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="digital-7-mono.ttf" />
@@ -26,6 +28,8 @@
     <Folder Include="Models\" />
     <Folder Include="ViewModels\" />
     <Folder Include="ViewModels\Base\" />
+    <Folder Include="Themes\" />
+    <Folder Include="Utility\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.iOS">
