@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
 using mClock.Models;
 using mClock.ViewModels;
@@ -12,16 +13,35 @@ namespace mClock.Views
     {
         MTimerViewModel viewModel;
         bool isTotalMinutesTripleTapped = false;
+
+        public int TimeFormatIndex
+        {
+            get => MClockPage.AppSettings.GetValueOrDefault(nameof(TimeFormatIndex), 0);
+            set => MClockPage.AppSettings.AddOrUpdateValue(nameof(TimeFormatIndex), value);
+        }
+
+        public static readonly string[] TimeFormats = {
+            "HH:mm",
+            "hh:mm tt",
+            "HH:mm:ss",
+            "hh:mm:ss tt",
+            "MMM dd, HH:mm:ss",
+            "MMM dd, hh:mm:ss tt",
+            "ddd, MMM dd, HH:mm:ss",
+            "ddd, MMM dd, hh:mm:ss tt",
+        };
+
         public MTimerPage()
         {
             InitializeComponent();
 
             viewModel = new MTimerViewModel();
             BindingContext = viewModel;
+            viewModel.CurrentTime = DateTime.Now.ToString(TimeFormats[TimeFormatIndex]);
 
             Device.StartTimer(TimeSpan.FromMilliseconds(1000), () =>
             {
-                viewModel.CurrentTime = DateTime.Now.ToString("h:mm tt");
+                viewModel.CurrentTime = DateTime.Now.ToString(TimeFormats[TimeFormatIndex]);
                 return true;
             });
         }
@@ -134,6 +154,27 @@ namespace mClock.Views
             }
 
             isTotalMinutesTripleTapped = false;
+        }
+
+        void OnTimeSwiped(System.Object sender, SwipedEventArgs e)
+        {
+            switch (e.Direction)
+            {
+                case SwipeDirection.Left:
+                    TimeFormatIndex--;
+                    if (TimeFormatIndex == -1) TimeFormatIndex = TimeFormats.Length - 1;
+                    break;
+                case SwipeDirection.Right:
+                    TimeFormatIndex++;
+                    if (TimeFormatIndex == TimeFormats.Length) TimeFormatIndex = 0;
+                    break;
+                case SwipeDirection.Up:
+                    // Handle the swipe
+                    break;
+                case SwipeDirection.Down:
+                    // Handle the swipe
+                    break;
+            }
         }
     }
 }

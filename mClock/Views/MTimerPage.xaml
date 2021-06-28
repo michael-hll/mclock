@@ -125,11 +125,17 @@
                Grid.Row="2"
                Text="{Binding CurrentTime}"
                TextColor="White"
-               FontSize="15"
+               FontSize="20"
+               IsVisible="True"
                HorizontalOptions="Center"
                VerticalOptions="Center"
                HorizontalTextAlignment="Center"
-               VerticalTextAlignment="Center"/>
+               VerticalTextAlignment="Center">
+            <Label.GestureRecognizers>
+                <SwipeGestureRecognizer Direction="Left" Swiped="OnTimeSwiped"/>
+                <SwipeGestureRecognizer Direction="Right" Swiped="OnTimeSwiped"/>
+            </Label.GestureRecognizers>
+        </Label>
     </Grid>
 
 </ContentPage>
