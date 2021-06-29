@@ -25,6 +25,7 @@ namespace mClock.ViewModels
         private double _timerFontSize;
         private string _currTime;
         private Color _stateColor;
+        private bool isLoaded = false;
 
         public MTimerViewModel()
         {
@@ -32,7 +33,7 @@ namespace mClock.ViewModels
             _countdown.PropertyChanged += Countdown_PropertyChanged;
             _defaultMinutes = MClockPage.MainInstance.MTimerDefaultMins;
             _totalMinutes = MClockPage.MainInstance.MTimerDefaultMins;
-            _timerFontSize = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Height / 6.5;
+            _timerFontSize = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Height / 6.8;
             _currTime = DateTime.Now.ToString("h:mm tt");
             _stateColor = Color.Red;
         }
@@ -144,10 +145,14 @@ namespace mClock.ViewModels
 
         public override Task LoadAsync()
         {
-            _countdown.Ticked += OnCountdownTicked;
-            _countdown.Completed += OnCountdownCompleted;
-            _countdown.Paused += OnCountdownPaused;
-            _countdown.Stopped += OnCountdownStopped;
+            if (!isLoaded)
+            {
+                _countdown.Ticked += OnCountdownTicked;
+                _countdown.Completed += OnCountdownCompleted;
+                _countdown.Paused += OnCountdownPaused;
+                _countdown.Stopped += OnCountdownStopped;
+                isLoaded = true;
+            }
 
             return base.LoadAsync();
         }

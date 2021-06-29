@@ -18,8 +18,6 @@ namespace mClock.Views
         const string HighLightDayOfWeekBackground2 = "HighLightDayOfWeekBackground2";
         ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
         ResourceDictionary CurrentTheme = new DarkTheme();
-        DarkTheme DarkTheme = new DarkTheme();
-        LightTheme LightTheme = new LightTheme();
 
         public static readonly string[] DateFormats = {
             "MMM dd, yyyy",
@@ -35,8 +33,11 @@ namespace mClock.Views
         };
 
         public static readonly string[] Themes = {
-            "DarkTheme",
-            "LightTheme"
+            ThemeKeys.DarkTheme,
+            ThemeKeys.SkyTheme,
+            ThemeKeys.LightTheme,
+            ThemeKeys.GrassTheme,
+            ThemeKeys.PinkTheme
         };
 
         public static readonly string[] WeekDaysNormalCap = { "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN" };
@@ -534,10 +535,16 @@ namespace mClock.Views
         {
             switch (Themes[ThemeIndex])
             {
-                case "DarkTheme":
-                    return DarkTheme;
-                case "LightTheme":
-                    return LightTheme;
+                case ThemeKeys.DarkTheme:
+                    return new DarkTheme();
+                case ThemeKeys.LightTheme:
+                    return new LightTheme();
+                case ThemeKeys.SkyTheme:
+                    return new SkyTheme();
+                case ThemeKeys.GrassTheme:
+                    return new GrassTheme();
+                case ThemeKeys.PinkTheme:
+                    return new PinkTheme();
                 default:
                     break;
             }

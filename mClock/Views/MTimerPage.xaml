@@ -10,7 +10,7 @@
     ios:Page.UseSafeArea="true"
     Shell.NavBarIsVisible="False"
     FlowDirection="MatchParent"
-    BackgroundColor="Black">
+    BackgroundColor="{DynamicResource TimerBackgroundColor}">
     <Grid BackgroundColor="Transparent" Margin="10" Padding="0" RowSpacing="0">
         <Grid.RowDefinitions>
             <RowDefinition Height="0" />
@@ -53,8 +53,8 @@
                     HorizontalOptions="FillAndExpand"
                     Margin="0"
                     Progress="1"
-                    ProgressStartColor="#333333"
-                    ProgressEndColor="#333333"
+                    ProgressStartColor="{DynamicResource TimerCircle2BGColor}"
+                    ProgressEndColor="{DynamicResource TimerCircle2BGColor}"
                     StrokeWidth="10"
                     CircleMargin="42"
                     BackgroundColor="Transparent"/>
@@ -64,8 +64,8 @@
                     HorizontalOptions="FillAndExpand"
                     Margin="0"
                     Progress="{Binding Progress}"
-                    ProgressStartColor="LightBlue"
-                    ProgressEndColor="LightBlue"
+                    ProgressStartColor="{DynamicResource TimerCircle2Color}"
+                    ProgressEndColor="{DynamicResource TimerCircle2Color}"
                     StrokeWidth="10"
                     CircleMargin="42"
                     BackgroundColor="Transparent"/>
@@ -75,8 +75,8 @@
                     HorizontalOptions="FillAndExpand"
                     Margin="0"
                     Progress="1"
-                    ProgressStartColor="#1a1a1a"
-                    ProgressEndColor="#1a1a1a"
+                    ProgressStartColor="{DynamicResource TimerCircle3BGColor}"
+                    ProgressEndColor="{DynamicResource TimerCircle3BGColor}"
                     StrokeWidth="10"
                     CircleMargin="54"
                     FlowDirection="LeftToRight"/>
@@ -86,8 +86,8 @@
                     HorizontalOptions="FillAndExpand"
                     Margin="0"
                     Progress="{Binding ProgressMin}"
-                    ProgressStartColor="Pink"
-                    ProgressEndColor="Pink"
+                    ProgressStartColor="{DynamicResource TimerCircle3Color}"
+                    ProgressEndColor="{DynamicResource TimerCircle3Color}"
                     StrokeWidth="10"
                     CircleMargin="54"
                     FlowDirection="LeftToRight">
@@ -124,7 +124,7 @@
         <Label x:Name="lableTime"
                Grid.Row="2"
                Text="{Binding CurrentTime}"
-               TextColor="White"
+               TextColor="{DynamicResource TimeTextColor}"
                FontSize="20"
                IsVisible="True"
                HorizontalOptions="Center"

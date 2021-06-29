@@ -4,7 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="mClock.Views.MClockPage"
     Shell.NavBarIsVisible="False"
-    BackgroundColor="{DynamicResource PageBackgroundColor}">
+    BackgroundColor="{DynamicResource ClockBackgroundColor}">
 
     <ContentPage.Resources>
         <ResourceDictionary>

@@ -2,19 +2,19 @@
 <ResourceDictionary
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="mClock.Themes.DarkTheme">
+    x:Class="mClock.Themes.SkyTheme">
 
-    <Color x:Key="ClockBackgroundColor">Black</Color>
+    <Color x:Key="ClockBackgroundColor">#33adff</Color>
     <Color x:Key="TimerBackgroundColor">Black</Color>
-    <Color x:Key="Week1to5BackgroundColor">Black</Color>
-    <Color x:Key="Week6to7BackgroundColor">Red</Color>
+    <Color x:Key="Week1to5BackgroundColor">#33adff</Color>
+    <Color x:Key="Week6to7BackgroundColor">#002966</Color>
     <Color x:Key="Week1to5TextColor">White</Color>
     <Color x:Key="Week6to7TextColor">White</Color>
     <Color x:Key="WeekBorderColor">White</Color>
-    <Color x:Key="HourTextColor">#00e6e6</Color>
-    <Color x:Key="MinuteTextColor">Lime</Color>
+    <Color x:Key="HourTextColor">#002966</Color>
+    <Color x:Key="MinuteTextColor">White</Color>
     <Color x:Key="PartOfDateTextColor">White</Color>
-    <Color x:Key="SecondsTextColor">Yellow</Color>
+    <Color x:Key="SecondsTextColor">White</Color>
     <Color x:Key="DateTextColor">White</Color>
     <Color x:Key="TimeTextColor">White</Color>
     <Color x:Key="TimerCircle2Color">LightBlue</Color>

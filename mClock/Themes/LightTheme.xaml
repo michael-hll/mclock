@@ -4,16 +4,22 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="mClock.Themes.LightTheme">
 
-    <Color x:Key="PageBackgroundColor">#ECF0F1</Color>
+    <Color x:Key="ClockBackgroundColor">#ECF0F1</Color>
+    <Color x:Key="TimerBackgroundColor">Black</Color>
     <Color x:Key="Week1to5BackgroundColor">#ECF0F1</Color>
-    <Color x:Key="Week6to7BackgroundColor">#F39C12</Color>
+    <Color x:Key="Week6to7BackgroundColor">#666666</Color>
     <Color x:Key="Week1to5TextColor">#17202A</Color>
     <Color x:Key="Week6to7TextColor">#FBFCFC</Color>
     <Color x:Key="WeekBorderColor">#17202A</Color>
-    <Color x:Key="HourTextColor">#17202A</Color>
+    <Color x:Key="HourTextColor">#666666</Color>
     <Color x:Key="MinuteTextColor">#17202A</Color>
     <Color x:Key="PartOfDateTextColor">#17202A</Color>
     <Color x:Key="SecondsTextColor">#17202A</Color>
     <Color x:Key="DateTextColor">#17202A</Color>
+    <Color x:Key="TimeTextColor">White</Color>
+    <Color x:Key="TimerCircle2Color">LightBlue</Color>
+    <Color x:Key="TimerCircle2BGColor">#333333</Color>
+    <Color x:Key="TimerCircle3Color">Pink</Color>
+    <Color x:Key="TimerCircle3BGColor">#1a1a1a</Color>
 
 </ResourceDictionary>
