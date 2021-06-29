@@ -3,7 +3,40 @@
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:mClock.Views"
        Title="mClock"
-       x:Class="mClock.AppShell">
+       x:Class="mClock.AppShell"
+       FlyoutIsPresented="False"
+       Shell.FlyoutItemIsVisible="False"
+       Shell.BackgroundColor="{DynamicResource ClockBackgroundColor}"
+       Shell.FlyoutWidth="280">
+
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid BackgroundColor="{DynamicResource ClockBackgroundColor}" HeightRequest="80">
+                <Label Text="M Clock" TextColor="{DynamicResource HourTextColor}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+
+    <Shell.FlyoutContent>
+        <Grid BackgroundColor="Black">
+            <Label Text="Hello" TextColor="White"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+        </Grid>
+    </Shell.FlyoutContent>
+
+    <Shell.FlyoutFooterTemplate>
+        <DataTemplate>
+            <StackLayout Padding="10" BackgroundColor="{DynamicResource ClockBackgroundColor}">
+                <Label Text="{Binding MClockVersion}"
+                       TextColor="{DynamicResource HourTextColor}"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"/>
+            </StackLayout>
+        </DataTemplate>
+    </Shell.FlyoutFooterTemplate>
 
     <ShellContent Title="Mobile Clock" Route="MClockPage" ContentTemplate="{DataTemplate local:MClockPage}" />
 

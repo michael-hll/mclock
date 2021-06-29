@@ -519,12 +519,6 @@ namespace mClock.Views
             HasDayOfWeekTextChanged = true;
         }
 
-        public string GetShortVersion()
-        {
-            // short version
-            return DependencyService.Get<IAppVersionAndBuild>().GetShortVersion();
-        }
-
         public string GetAppVersion()
         {
             // app version

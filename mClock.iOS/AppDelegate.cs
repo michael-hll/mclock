@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using AVFoundation;
 using FFImageLoading.Forms.Platform;
 using Foundation;
 using UIKit;
@@ -24,6 +25,11 @@ namespace mClock.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             CachedImageRenderer.Init();
+
+            //var currentSession = AVAudioSession.SharedInstance();
+            //currentSession.SetCategory(AVAudioSessionCategory.Playback, AVAudioSessionCategoryOptions.MixWithOthers);
+            //currentSession.SetActive(true);
+
             LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
