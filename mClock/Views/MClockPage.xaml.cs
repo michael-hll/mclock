@@ -35,9 +35,9 @@ namespace mClock.Views
         public static readonly string[] Themes = {
             ThemeKeys.DarkTheme,
             ThemeKeys.SkyTheme,
-            ThemeKeys.LightTheme,
             ThemeKeys.GrassTheme,
-            ThemeKeys.PinkTheme
+            ThemeKeys.PinkTheme,
+            ThemeKeys.LightTheme,
         };
 
         public static readonly string[] WeekDaysNormalCap = { "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN" };
