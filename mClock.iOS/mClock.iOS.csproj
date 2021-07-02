@@ -127,6 +127,8 @@
     <BundleResource Include="Resources\xamarin_logo%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <BundleResource Include="Resources\mtimer_bg.jpg" />
+    <BundleResource Include="Resources\en.lproj\InfoPlist.strings" />
+    <BundleResource Include="Resources\zh-CN.lproj\InfoPlist.strings" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -146,5 +148,9 @@
       <Project>{BFDFB7EB-83B0-41BB-ACAF-727914DDE60A}</Project>
       <Name>mClock</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\en.lproj\" />
+    <Folder Include="Resources\zh-CN.lproj\" />
   </ItemGroup>
 </Project>

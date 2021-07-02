@@ -3,9 +3,11 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="mClock.Views.MClockPage"
+    xmlns:resource="clr-namespace:mClock.Resources"
     Shell.NavBarIsVisible="False"
     Shell.FlyoutItemIsVisible="False"
     Shell.TabBarIsVisible="False"
+    Title="{x:Static resource:AppResources.MClock_Title}"
     BackgroundColor="{DynamicResource ClockBackgroundColor}">
 
     <ContentPage.Resources>

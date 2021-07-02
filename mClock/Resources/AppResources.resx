@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<data name="MClock_Title" xml:space="preserve">
+        <value>Color Clock</value>
+    </data>
+	<data name="MClock_Note1" xml:space="preserve">
+        <value>Notes: </value>
+    </data>
+	<data name="MClock_Note2" xml:space="preserve">
+        <value> 1. Try to swip left/right on week, hour, minute, date, you can change the format or switch functions; </value>
+    </data>
+	<data name="MClock_Note3" xml:space="preserve">
+        <value> 2. Double click on Sunday you can change the first day of the week; </value>
+    </data>
+	<data name="MClock_Note4" xml:space="preserve">
+        <value> 3. On Timer page, you can swip up/down to change the default minutes; </value>
+    </data>
+	<data name="MClock_Note5" xml:space="preserve">
+        <value> 4. You can double click to start/pause the timer and triple click to stop it; </value>
+    </data>
+</root>

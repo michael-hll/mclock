@@ -3,6 +3,9 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using mClock.Views;
 using System.IO;
+using System.Threading;
+using System.Globalization;
+using mClock.Resources;
 
 namespace mClock
 {
@@ -12,6 +15,10 @@ namespace mClock
         public App()
         {
             InitializeComponent();
+
+            // Load localizations
+            Thread.CurrentThread.CurrentUICulture = CultureInfo.InstalledUICulture;
+            AppResources.Culture = Thread.CurrentThread.CurrentUICulture;
 
             MainPage = new AppShell();
         }

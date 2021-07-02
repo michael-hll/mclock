@@ -2,6 +2,7 @@
 <Shell xmlns="http://xamarin.com/schemas/2014/forms" 
        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
        xmlns:local="clr-namespace:mClock.Views"
+       xmlns:resource="clr-namespace:mClock.Resources"
        Title="mClock"
        x:Class="mClock.AppShell"
        FlyoutIsPresented="False"
@@ -12,7 +13,7 @@
     <Shell.FlyoutHeaderTemplate>
         <DataTemplate>
             <Grid BackgroundColor="{DynamicResource ClockBackgroundColor}" HeightRequest="80">
-                <Label Text="M Clock" TextColor="{DynamicResource HourTextColor}"
+                <Label Text="{x:Static resource:AppResources.MClock_Title}" TextColor="{DynamicResource HourTextColor}"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"/>
             </Grid>
@@ -20,10 +21,20 @@
     </Shell.FlyoutHeaderTemplate>
 
     <Shell.FlyoutContent>
-        <Grid BackgroundColor="Black">
-            <Label Text="Hello" TextColor="White"
+        <Grid BackgroundColor="#595959" Padding="10">
+            <Label TextColor="{DynamicResource ClockBackgroundColor}"
                    HorizontalOptions="Center"
-                   VerticalOptions="Center"/>
+                   VerticalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span x:Name="lableNote1" Text="{x:Static resource:AppResources.MClock_Note1}" FontSize="18" FontAttributes="Bold" FontFamily="Arial"/>
+                        <Span x:Name="lableNote2" FontFamily="Arial" FontSize="15" Text="{x:Static resource:AppResources.MClock_Note2}" />
+                        <Span x:Name="lableNote3" FontFamily="Arial" FontSize="15" Text="{x:Static resource:AppResources.MClock_Note3}" />
+                        <Span x:Name="lableNote4" FontFamily="Arial" FontSize="15" Text="{x:Static resource:AppResources.MClock_Note4}" />
+                        <Span x:Name="lableNote5" FontFamily="Arial" FontSize="15" Text="{x:Static resource:AppResources.MClock_Note5}" />
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
         </Grid>
     </Shell.FlyoutContent>
 
@@ -31,6 +42,7 @@
         <DataTemplate>
             <StackLayout Padding="10" BackgroundColor="{DynamicResource ClockBackgroundColor}">
                 <Label Text="{Binding MClockVersion}"
+                       FontSize="12"
                        TextColor="{DynamicResource HourTextColor}"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"/>
@@ -38,6 +50,6 @@
         </DataTemplate>
     </Shell.FlyoutFooterTemplate>
 
-    <ShellContent Title="Mobile Clock" Route="MClockPage" ContentTemplate="{DataTemplate local:MClockPage}" />
+    <ShellContent Title="{x:Static resource:AppResources.MClock_Title}" Route="MClockPage" ContentTemplate="{DataTemplate local:MClockPage}" />
 
 </Shell>

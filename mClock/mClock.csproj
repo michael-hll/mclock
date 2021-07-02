@@ -18,6 +18,7 @@
     <None Remove="digital-7 %28mono%29.ttf" />
     <None Remove="Themes\" />
     <None Remove="Utility\" />
+    <None Remove="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="digital-7-mono.ttf" />
@@ -30,10 +31,29 @@
     <Folder Include="ViewModels\Base\" />
     <Folder Include="Themes\" />
     <Folder Include="Utility\" />
+    <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Xamarin.iOS">
       <HintPath>..\..\..\..\..\Library\Frameworks\Xamarin.iOS.framework\Versions\14.16.0.5\lib\mono\Xamarin.iOS\Xamarin.iOS.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\AppResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\AppResources.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>AppResources.zh-CN.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\AppResources.Designer.cs">
+      <DependentUpon>AppResources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\AppResources.zh-CN.Designer.cs">
+      <DependentUpon>AppResources.zh-CN.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>
