@@ -19,7 +19,7 @@
         <value>Notes: </value>
     </data>
 	<data name="MClock_Note2" xml:space="preserve">
-        <value> 1. Try to swip left/right on week, hour, minute, date, you can change the format or switch functions; </value>
+        <value> 1. Try to swip left/right or double click on week, hour, minute, date, you can change the format or switch functions; </value>
     </data>
 	<data name="MClock_Note3" xml:space="preserve">
         <value> 2. Double click on Sunday you can change the first day of the week; </value>

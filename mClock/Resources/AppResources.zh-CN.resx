@@ -19,7 +19,7 @@
         <value>提示:</value>
     </data>
 	<data name="MClock_Note2" xml:space="preserve">
-        <value> 1. 尝试在星期，小时，分钟，日期上左右滑动，可以切换显示格式或者打开新功能；</value>
+        <value> 1. 尝试在星期，小时，分钟，日期上左右滑动或者双击，可以切换显示格式或者打开新功能；</value>
     </data>
 	<data name="MClock_Note3" xml:space="preserve">
         <value> 2. 双击星期日可以改变星期的第一天；</value>
