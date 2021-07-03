@@ -83,7 +83,6 @@
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
-    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <BundleResource Include="Resources\en.lproj\InfoPlist.strings" />
     <BundleResource Include="Resources\zh-CN.lproj\InfoPlist.strings" />
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\icon1024-1.png" />
@@ -126,5 +125,8 @@
   <ItemGroup>
     <Folder Include="Resources\en.lproj\" />
     <Folder Include="Resources\zh-CN.lproj\" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
   </ItemGroup>
 </Project>
