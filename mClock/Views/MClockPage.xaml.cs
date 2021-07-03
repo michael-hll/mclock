@@ -14,8 +14,6 @@ namespace mClock.Views
     {
         const double DAY_OF_WEEK_OPACITY_SHOW = 1;
         const double DAY_OF_WEEK_OPACITY_HIDE = 0.2;
-        const string HighLightDayOfWeekBackground1 = "HighLightDayOfWeekBackground1";
-        const string HighLightDayOfWeekBackground2 = "HighLightDayOfWeekBackground2";
         ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
         ResourceDictionary CurrentTheme = new DarkTheme();
 

@@ -19,5 +19,11 @@ namespace mClock.Utility
             // short version
             return DependencyService.Get<IAppVersionAndBuild>().GetShortVersion();
         }
+
+        public static string GetBuildNumber()
+        {
+            // version
+            return DependencyService.Get<IAppVersionAndBuild>().GetAppVersion();
+        }
     }
 }
