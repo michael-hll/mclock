@@ -21,21 +21,23 @@
     </Shell.FlyoutHeaderTemplate>
 
     <Shell.FlyoutContent>
-        <Grid BackgroundColor="#595959" Padding="10">
-            <Label TextColor="{DynamicResource ClockBackgroundColor}"
+        <ScrollView>
+            <Grid BackgroundColor="#595959" Padding="40,10">
+                <Label TextColor="{DynamicResource ClockBackgroundColor}"
                    HorizontalOptions="Center"
                    VerticalOptions="Center">
-                <Label.FormattedText>
-                    <FormattedString>
-                        <Span x:Name="lableNote1" Text="{x:Static resource:AppResources.MClock_Note1}" FontSize="18" FontAttributes="Bold" FontFamily="Arial"/>
-                        <Span x:Name="lableNote2" FontFamily="Arial" FontSize="15" Text="{x:Static resource:AppResources.MClock_Note2}" />
-                        <Span x:Name="lableNote3" FontFamily="Arial" FontSize="15" Text="{x:Static resource:AppResources.MClock_Note3}" />
-                        <Span x:Name="lableNote4" FontFamily="Arial" FontSize="15" Text="{x:Static resource:AppResources.MClock_Note4}" />
-                        <Span x:Name="lableNote5" FontFamily="Arial" FontSize="15" Text="{x:Static resource:AppResources.MClock_Note5}" />
-                    </FormattedString>
-                </Label.FormattedText>
-            </Label>
-        </Grid>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span x:Name="lableNote1" Text="{x:Static resource:AppResources.MClock_Note1}" FontSize="18" FontAttributes="Bold" FontFamily="Arial"/>
+                            <Span x:Name="lableNote2" FontFamily="Arial" FontSize="15" Text="{x:Static resource:AppResources.MClock_Note2}" />
+                            <Span x:Name="lableNote3" FontFamily="Arial" FontSize="15" Text="{x:Static resource:AppResources.MClock_Note3}" />
+                            <Span x:Name="lableNote4" FontFamily="Arial" FontSize="15" Text="{x:Static resource:AppResources.MClock_Note4}" />
+                            <Span x:Name="lableNote5" FontFamily="Arial" FontSize="15" Text="{x:Static resource:AppResources.MClock_Note5}" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </Grid>
+        </ScrollView>
     </Shell.FlyoutContent>
 
     <Shell.FlyoutFooterTemplate>
