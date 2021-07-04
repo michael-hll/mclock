@@ -11,3 +11,6 @@ mClock.iOS/Resources/Default.png
 mClock.iOS/Resources/Default-Portrait@2x.png
 mClock.iOS/Resources/Default-Portrait.png
 mClock.iOS/Resources/Default-568h@2x.png
+.DS_Store
+Releases
+Images
