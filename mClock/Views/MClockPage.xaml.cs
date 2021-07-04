@@ -14,8 +14,12 @@ namespace mClock.Views
     {
         const double DAY_OF_WEEK_OPACITY_SHOW = 1;
         const double DAY_OF_WEEK_OPACITY_HIDE = 0.2;
+        const int SLEEPTIME_START = 23;
+        const int SLEEPTIME_END = 6;
         ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
         ResourceDictionary CurrentTheme = new DarkTheme();
+        IBrightnessService brightnessService = DependencyService.Get<IBrightnessService>();
+
 
         public static readonly string[] DateFormats = {
             "MMM dd, yyyy",
@@ -91,6 +95,12 @@ namespace mClock.Views
             set => AppSettings.AddOrUpdateValue(nameof(ThemeIndex), value);
         }
 
+        public float ScreenBrightness
+        {
+            get => AppSettings.GetValueOrDefault(nameof(ScreenBrightness), 0.6f);
+            set => AppSettings.AddOrUpdateValue(nameof(ScreenBrightness), value);
+        }
+
         readonly Dictionary<int, string[]> DayOfWeekFormatsDict = new Dictionary<int, string[]>()
         {
             { 0, WeekDaysNormalCap },
@@ -100,6 +110,8 @@ namespace mClock.Views
             { 4, WeekDaysChinese2 },
             { 5, WeekDaysChineseShort }
         };
+
+        bool IsInSleepTime { get; set; }
 
         double DayOfWeekFontSize
         {
@@ -175,10 +187,17 @@ namespace mClock.Views
                 lablePartOfDay.Margin = new Thickness(0, 15, 20, 0);
             }
 
-            //lableVersion.Text = GetShortVersion();
-
             DeviceDisplay.KeepScreenOn = true;
             HasDayOfWeekTextChanged = true;
+
+            if (DateTime.Now.Hour >= SLEEPTIME_START && DateTime.Now.Hour <= SLEEPTIME_END)
+            {
+                IsInSleepTime = true;
+            }
+            else
+            {
+                IsInSleepTime = false;
+            }
         }
 
         protected override void OnAppearing()
@@ -191,32 +210,44 @@ namespace mClock.Views
             {
                 DateTime now = DateTime.Now;
 
-                if (now.Hour >= 0 && now.Hour <= 24)
+                // make the screen brightness low
+                if (now.Hour >= SLEEPTIME_START && now.Hour <= SLEEPTIME_END)
                 {
-                    Device.InvokeOnMainThreadAsync(() =>
+                    if (IsInSleepTime == false)
                     {
-                        if (Is12Hour) lableHour.Text = now.ToString("hh");
-                        else lableHour.Text = now.ToString("HH");
-
-                        lableMinute.Text = now.Minute.ToString("00");
-                        lableSecond.Text = now.Second.ToString("00");
-                        lablePartOfDay.Text = now.ToString("tt");
-
-                        UpdateDayOfWeekText();
-                        UpdateDayOfWeekVisibility(now);
-                        UpdateDateLabelText();
-
-                        // show hide controls
-                        lablePartOfDay.IsVisible = Is12Hour;
-                        lableSecond.IsVisible = IsShowSeconds;
-
-                    });
-                    stackLayout.IsVisible = true;
+                        ScreenBrightness = brightnessService.GetBrightness();
+                        brightnessService.SetBrightness(0f);
+                        IsInSleepTime = true;
+                    }
                 }
                 else
                 {
-                    stackLayout.IsVisible = false;
+                    if (IsInSleepTime == true)
+                    {
+                        brightnessService.SetBrightness(ScreenBrightness);
+                        IsInSleepTime = false;
+                    }
                 }
+
+                // Update datetime
+                Device.InvokeOnMainThreadAsync(() =>
+                {
+                    if (Is12Hour) lableHour.Text = now.ToString("hh");
+                    else lableHour.Text = now.ToString("HH");
+
+                    lableMinute.Text = now.Minute.ToString("00");
+                    lableSecond.Text = now.Second.ToString("00");
+                    lablePartOfDay.Text = now.ToString("tt");
+
+                    UpdateDayOfWeekText();
+                    UpdateDayOfWeekVisibility(now);
+                    UpdateDateLabelText();
+
+                    // show hide controls
+                    lablePartOfDay.IsVisible = Is12Hour;
+                    lableSecond.IsVisible = IsShowSeconds;
+                });
+
                 return true;
             });
 
@@ -311,7 +342,7 @@ namespace mClock.Views
                         brightnessService.SetBrightness(current + 0.2f);
                     break;
                 case SwipeDirection.Down:
-                    if (current >= 0.2)
+                    if (current >= 0.0)
                         brightnessService.SetBrightness(current - 0.2f);
                     break;
             }
@@ -319,7 +350,6 @@ namespace mClock.Views
 
         async void OnMinuteSwiped(System.Object sender, SwipedEventArgs e)
         {
-            var brightnessService = DependencyService.Get<IBrightnessService>();
             float current = brightnessService.GetBrightness();
             switch (e.Direction)
             {
