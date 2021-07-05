@@ -14,7 +14,7 @@ namespace mClock.Views
     {
         const double DAY_OF_WEEK_OPACITY_SHOW = 1;
         const double DAY_OF_WEEK_OPACITY_HIDE = 0.2;
-        const int SLEEPTIME_START = 23;
+        const int SLEEPTIME_START = 22;
         const int SLEEPTIME_END = 6;
         ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
         ResourceDictionary CurrentTheme = new DarkTheme();
@@ -210,8 +210,8 @@ namespace mClock.Views
             {
                 DateTime now = DateTime.Now;
 
-                // make the screen brightness low
-                if (now.Hour >= SLEEPTIME_START && now.Hour <= SLEEPTIME_END)
+                // make the screen brightness low in sleeping time
+                if (now.Hour >= SLEEPTIME_START || now.Hour < SLEEPTIME_END)
                 {
                     if (IsInSleepTime == false)
                     {
