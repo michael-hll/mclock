@@ -14,3 +14,6 @@ mClock.iOS/Resources/Default-568h@2x.png
 .DS_Store
 Releases
 Images
+Releases/*.*
+Releases/mClock.ipa
+*.ipa
