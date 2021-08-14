@@ -598,7 +598,6 @@ namespace mClock.Views
                 this.height = height;
 
                 UpdateLableFontSizes(this.width);
-
             }
         }
 
