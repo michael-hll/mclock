@@ -85,6 +85,12 @@ namespace mClock.Views
             set => AppSettings.AddOrUpdateValue(nameof(DayOfWeekFormatIndex), value);
         }
 
+        public int DayOfWeekFormatIndexV
+        {
+            get => AppSettings.GetValueOrDefault(nameof(DayOfWeekFormatIndexV), 2);
+            set => AppSettings.AddOrUpdateValue(nameof(DayOfWeekFormatIndexV), value);
+        }
+
         public int MTimerDefaultMins
         {
             get => AppSettings.GetValueOrDefault(nameof(MTimerDefaultMins), 25);
@@ -103,6 +109,17 @@ namespace mClock.Views
             set => AppSettings.AddOrUpdateValue(nameof(ScreenBrightness), value);
         }
 
+        public int DayOfWeekFormatIndexCurrent
+        {
+            get
+            {
+                if (Utility.UtilityService.IsScreenPortrait)
+                    return DayOfWeekFormatIndexV;
+                else
+                    return DayOfWeekFormatIndex;
+            }
+        }
+
         readonly Dictionary<int, string[]> DayOfWeekFormatsDict = new Dictionary<int, string[]>()
         {
             { 0, WeekDaysNormalCap },
@@ -119,7 +136,7 @@ namespace mClock.Views
         {
             get
             {
-                if (DayOfWeekFormatIndex >= 3)
+                if (DayOfWeekFormatIndexCurrent >= 3)
                 {
                     if (Application.Current.MainPage.Width < 600)
                         return 13;
@@ -136,7 +153,7 @@ namespace mClock.Views
         {
             get
             {
-                if (DayOfWeekFormatIndex >= 3) return new Thickness(0, 0, 0, 0);
+                if (DayOfWeekFormatIndexCurrent >= 3) return new Thickness(0, 0, 0, 0);
                 else return new Thickness(0, 0, 0, 0);
             }
         }
@@ -145,7 +162,7 @@ namespace mClock.Views
         {
             get
             {
-                if (DayOfWeekFormatIndex >= 3) return "Weibei SC";
+                if (DayOfWeekFormatIndexCurrent >= 3) return "Weibei SC";
                 else return "Courier";
             }
         }
@@ -318,26 +335,41 @@ namespace mClock.Views
         }
         void OnDayOfWeeksSwiped(System.Object sender, SwipedEventArgs e)
         {
-            switch (e.Direction)
+            if (!Utility.UtilityService.IsScreenPortrait)
             {
-                case SwipeDirection.Left:
-                    DayOfWeekFormatIndex--;
-                    if (DayOfWeekFormatIndex == -1) DayOfWeekFormatIndex = DayOfWeekFormatsDict.Keys.Count - 1;
+                switch (e.Direction)
+                {
+                    case SwipeDirection.Left:
+                        DayOfWeekFormatIndex--;
+                        if (DayOfWeekFormatIndex == -1) DayOfWeekFormatIndex = DayOfWeekFormatsDict.Keys.Count - 1;
+                        HasDayOfWeekTextChanged = true;
+                        UpdateDayOfWeekText();
+                        break;
+                    case SwipeDirection.Right:
+                        DayOfWeekFormatIndex++;
+                        if (DayOfWeekFormatIndex == DayOfWeekFormatsDict.Keys.Count) DayOfWeekFormatIndex = 0;
+                        HasDayOfWeekTextChanged = true;
+                        UpdateDayOfWeekText();
+                        break;
+                    case SwipeDirection.Up:
+                        // Handle the swipe
+                        break;
+                    case SwipeDirection.Down:
+                        // Handle the swipe
+                        break;
+                }
+            }
+            else
+            {
+                if (e.Direction == SwipeDirection.Left || e.Direction == SwipeDirection.Right)
+                {
+                    if (DayOfWeekFormatIndexV == 2)
+                        DayOfWeekFormatIndexV = 5;
+                    else if (DayOfWeekFormatIndexV == 5)
+                        DayOfWeekFormatIndexV = 2;
                     HasDayOfWeekTextChanged = true;
                     UpdateDayOfWeekText();
-                    break;
-                case SwipeDirection.Right:
-                    DayOfWeekFormatIndex++;
-                    if (DayOfWeekFormatIndex == DayOfWeekFormatsDict.Keys.Count) DayOfWeekFormatIndex = 0;
-                    HasDayOfWeekTextChanged = true;
-                    UpdateDayOfWeekText();
-                    break;
-                case SwipeDirection.Up:
-                    // Handle the swipe
-                    break;
-                case SwipeDirection.Down:
-                    // Handle the swipe
-                    break;
+                }
             }
         }
 
@@ -396,7 +428,7 @@ namespace mClock.Views
         string GetDayOfWeekText(int index)
         {
             int i = GetMappingDayOfWeekIndex(index);
-            return DayOfWeekFormatsDict[DayOfWeekFormatIndex][i];
+            return DayOfWeekFormatsDict[DayOfWeekFormatIndexCurrent][i];
         }
 
         void UpdateDayOfWeekText()
@@ -598,6 +630,10 @@ namespace mClock.Views
                 this.height = height;
 
                 UpdateLableFontSizes(this.width);
+
+                // Update week display
+                HasDayOfWeekTextChanged = true;
+                UpdateDayOfWeekText();
             }
         }
 
