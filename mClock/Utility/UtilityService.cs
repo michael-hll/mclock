@@ -5,7 +5,7 @@ using Xamarin.Forms;
 
 namespace mClock.Utility
 {
-    public static class Utility
+    public static class UtilityService
     {
         public static ResourceDictionary GetResourceDictionary(ICollection<ResourceDictionary> mergedDictionaries)
         {
@@ -24,6 +24,14 @@ namespace mClock.Utility
         {
             // version
             return DependencyService.Get<IAppVersionAndBuild>().GetAppVersion();
+        }
+
+        public static bool IsScreenPortrait
+        {
+            get
+            {
+                return Application.Current.MainPage.Width < Application.Current.MainPage.Height;
+            }
         }
     }
 }

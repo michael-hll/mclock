@@ -6,13 +6,15 @@
        Title="mClock"
        x:Class="mClock.AppShell"
        FlyoutIsPresented="False"
+       Shell.NavBarIsVisible="False"
        Shell.FlyoutItemIsVisible="False"
        Shell.BackgroundColor="{DynamicResource ClockBackgroundColor}"
+       FlyoutBackgroundColor="{DynamicResource ClockBackgroundColor}"
        Shell.FlyoutWidth="280">
 
     <Shell.FlyoutHeaderTemplate>
         <DataTemplate>
-            <Grid BackgroundColor="{DynamicResource ClockBackgroundColor}" HeightRequest="80">
+            <Grid BackgroundColor="{DynamicResource ClockBackgroundColor}" HeightRequest="20" Padding="0,15,0,15">
                 <Label Text="{x:Static resource:AppResources.MClock_Title}" TextColor="{DynamicResource HourTextColor}"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"/>
@@ -21,8 +23,8 @@
     </Shell.FlyoutHeaderTemplate>
 
     <Shell.FlyoutContent>
-        <ScrollView>
-            <Grid BackgroundColor="#595959" Padding="40,10">
+        <ScrollView VerticalOptions="FillAndExpand" BackgroundColor="#595959">
+            <Grid BackgroundColor="#595959" Padding="40,20,20,0" VerticalOptions="FillAndExpand">
                 <Label TextColor="{DynamicResource ClockBackgroundColor}"
                    HorizontalOptions="Center"
                    VerticalOptions="Center">
@@ -42,9 +44,9 @@
 
     <Shell.FlyoutFooterTemplate>
         <DataTemplate>
-            <StackLayout Padding="10" BackgroundColor="{DynamicResource ClockBackgroundColor}">
+            <StackLayout Padding="20" BackgroundColor="{DynamicResource ClockBackgroundColor}">
                 <Label Text="{Binding MClockVersion}"
-                       FontSize="12"
+                       FontSize="15"
                        TextColor="{DynamicResource HourTextColor}"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"/>

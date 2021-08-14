@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using mClock.Models;
 using mClock.ViewModels;
 using mClock.ViewModels.Base;
+using mClock.Utility;
 using Xamarin.Forms;
 
 namespace mClock.Views
@@ -13,6 +14,8 @@ namespace mClock.Views
     {
         MTimerViewModel viewModel;
         bool isTotalMinutesTripleTapped = false;
+        public double width;
+        public double height;
 
         public int TimeFormatIndex
         {
@@ -175,6 +178,27 @@ namespace mClock.Views
                     // Handle the swipe
                     break;
             }
+        }
+
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+            if (width != this.width || height != this.height)
+            {
+                this.width = width;
+                this.height = height;
+
+                UpdateLableFontSizes(this.width);
+            }
+        }
+
+        protected void UpdateLableFontSizes(double width)
+        {
+            double fontSizeDivisor = 7;
+            if (mClock.Utility.UtilityService.IsScreenPortrait)
+                viewModel.TimerFontSize = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width / fontSizeDivisor;
+            else
+                viewModel.TimerFontSize = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Height / fontSizeDivisor;
         }
     }
 }

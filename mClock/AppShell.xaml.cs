@@ -19,7 +19,7 @@ namespace mClock
         {
             get
             {
-                return Utility.Utility.GetShortVersion();
+                return Utility.UtilityService.GetShortVersion() + " (Build " + Utility.UtilityService.GetBuildNumber() + ")";
             }
         }
     }

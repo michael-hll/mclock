@@ -2,6 +2,7 @@
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using Xamarin.Forms;
+using mClock.Utility;
 namespace mClock.Controls
 {
     public class CircleCountdown : SKCanvasView
@@ -64,7 +65,10 @@ namespace mClock.Controls
             int max = Math.Max(info.Width, info.Height);
 
             // Translate square left/upper coordinate
-            canvas.Translate((max - size) / 2, 0);
+            if (mClock.Utility.UtilityService.IsScreenPortrait)
+                canvas.Translate(0, (max - size) / 2);
+            else
+                canvas.Translate((max - size) / 2, 0);
 
             canvas.Clear();
             canvas.Save();
