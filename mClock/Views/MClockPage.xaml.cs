@@ -20,6 +20,8 @@ namespace mClock.Views
         ResourceDictionary CurrentTheme = new DarkTheme();
         IBrightnessService brightnessService = DependencyService.Get<IBrightnessService>();
 
+        public double width;
+        public double height;
 
         public static readonly string[] DateFormats = {
             "MMM dd, yyyy",
@@ -170,17 +172,7 @@ namespace mClock.Views
         {
             double width = Application.Current.MainPage.Width;
 
-            double hourFontSize = width * 0.3;
-            double minuteFontSize = width * 0.3;
-            double secondFontSize = width * 0.10;
-
-            lableHour.FontSize = hourFontSize;
-            lableMinute.FontSize = minuteFontSize;
-            lableSecond.FontSize = secondFontSize;
-
-            this.relativeLayoutRight.Children.Add(this.lableSecond,
-                Constraint.Constant(0),
-                Constraint.Constant(secondFontSize * 1.45));
+            UpdateLableFontSizes(width);
 
             if (width > 600)
             {
@@ -198,6 +190,36 @@ namespace mClock.Views
             {
                 IsInSleepTime = false;
             }
+        }
+
+        protected void UpdateLableFontSizes(double width)
+        {
+            double hourFontSize = width * 0.3;
+            double minuteFontSize = width * 0.3;
+            double secondFontSize = width * 0.10;
+
+            lableHour.FontSize = hourFontSize;
+            lableMinute.FontSize = minuteFontSize;
+            lableSecond.FontSize = secondFontSize;
+
+            this.relativeLayoutRight.Children.Add(this.lableSecond,
+                Constraint.Constant(0),
+                Constraint.Constant(secondFontSize * 1.45));
+
+            UpdateWeekLableFontSizes();
+
+            lableDate.FontSize = width * 0.04;
+        }
+
+        protected void UpdateWeekLableFontSizes()
+        {
+            lableDayOfWeek1.FontSize = DayOfWeekFontSize;
+            lableDayOfWeek2.FontSize = DayOfWeekFontSize;
+            lableDayOfWeek3.FontSize = DayOfWeekFontSize;
+            lableDayOfWeek4.FontSize = DayOfWeekFontSize;
+            lableDayOfWeek5.FontSize = DayOfWeekFontSize;
+            lableDayOfWeek6.FontSize = DayOfWeekFontSize;
+            lableDayOfWeek7.FontSize = DayOfWeekFontSize;
         }
 
         protected override void OnAppearing()
@@ -389,13 +411,7 @@ namespace mClock.Views
                 lableDayOfWeek6.Text = GetDayOfWeekText(6);
                 lableDayOfWeek7.Text = GetDayOfWeekText(7);
 
-                lableDayOfWeek1.FontSize = DayOfWeekFontSize;
-                lableDayOfWeek2.FontSize = DayOfWeekFontSize;
-                lableDayOfWeek3.FontSize = DayOfWeekFontSize;
-                lableDayOfWeek4.FontSize = DayOfWeekFontSize;
-                lableDayOfWeek5.FontSize = DayOfWeekFontSize;
-                lableDayOfWeek6.FontSize = DayOfWeekFontSize;
-                lableDayOfWeek7.FontSize = DayOfWeekFontSize;
+                UpdateWeekLableFontSizes();
 
                 lableDayOfWeek1.FontFamily = DayOfWeekFrameFontFamily;
                 lableDayOfWeek2.FontFamily = DayOfWeekFrameFontFamily;
@@ -571,6 +587,19 @@ namespace mClock.Views
                     break;
             }
             return null;
+        }
+
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+            if (width != this.width || height != this.height)
+            {
+                this.width = width;
+                this.height = height;
+
+                UpdateLableFontSizes(this.width);
+
+            }
         }
 
     }
