@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using AVFoundation;
-using FFImageLoading.Forms.Platform;
+﻿using FFImageLoading.Forms.Platform;
 using Foundation;
 using UIKit;
 

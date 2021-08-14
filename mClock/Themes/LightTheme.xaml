@@ -20,6 +20,6 @@
     <Color x:Key="TimerCircle2Color">LightBlue</Color>
     <Color x:Key="TimerCircle2BGColor">#333333</Color>
     <Color x:Key="TimerCircle3Color">Pink</Color>
-    <Color x:Key="TimerCircle3BGColor">#1a1a1a</Color>
+    <Color x:Key="TimerCircle3BGColor">#333333</Color>
 
 </ResourceDictionary>

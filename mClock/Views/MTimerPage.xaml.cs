@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Threading.Tasks;
 using mClock.Models;
-using mClock.ViewModels;
-using mClock.ViewModels.Base;
 using mClock.Utility;
+using mClock.ViewModels;
 using Xamarin.Forms;
 
 namespace mClock.Views
@@ -57,7 +54,8 @@ namespace mClock.Views
 
                     break;
                 case SwipeDirection.Right:
-                    await Navigation.PopAsync();
+                    if (Navigation.NavigationStack.Count > 1)
+                        await Navigation.PopAsync();
                     break;
                 case SwipeDirection.Up:
                     if (viewModel.Countdown.State == CountdownState.Stopped)
@@ -99,6 +97,7 @@ namespace mClock.Views
                     steps = 10;
             }
             viewModel.DefaultMinutes = current + steps * direction;
+            UpdateLableFontSizes(Application.Current.MainPage.Width);
         }
 
         protected override async void OnAppearing()
@@ -194,8 +193,15 @@ namespace mClock.Views
 
         protected void UpdateLableFontSizes(double width)
         {
-            double fontSizeDivisor = 7;
-            if (mClock.Utility.UtilityService.IsScreenPortrait)
+            double fontSizeDivisor = 6;
+            if (Device.Idiom == TargetIdiom.Tablet)
+            {
+                // iPad
+                fontSizeDivisor = 5;
+            }
+            if (viewModel.DefaultMinutes > 99)
+                fontSizeDivisor += 1.5;
+            if (UtilityService.IsScreenPortrait)
                 viewModel.TimerFontSize = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Width / fontSizeDivisor;
             else
                 viewModel.TimerFontSize = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Height / fontSizeDivisor;

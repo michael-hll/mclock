@@ -13,7 +13,7 @@ namespace mClock.Views
     public partial class MClockPage : ContentPage
     {
         const double DAY_OF_WEEK_OPACITY_SHOW = 1;
-        const double DAY_OF_WEEK_OPACITY_HIDE = 0.2;
+        const double DAY_OF_WEEK_OPACITY_HIDE = 0.15;
         const int SLEEPTIME_START = 22;
         const int SLEEPTIME_END = 6;
         ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
@@ -189,12 +189,7 @@ namespace mClock.Views
         {
             double width = Application.Current.MainPage.Width;
 
-            UpdateLableFontSizes(width);
-
-            if (width > 600)
-            {
-                lablePartOfDay.Margin = new Thickness(0, 15, 20, 0);
-            }
+            UpdateLables(width);
 
             DeviceDisplay.KeepScreenOn = true;
             HasDayOfWeekTextChanged = true;
@@ -209,7 +204,7 @@ namespace mClock.Views
             }
         }
 
-        protected void UpdateLableFontSizes(double width)
+        protected void UpdateLables(double width)
         {
             double hourFontSize = width * 0.3;
             double minuteFontSize = width * 0.3;
@@ -226,6 +221,23 @@ namespace mClock.Views
             UpdateWeekLableFontSizes();
 
             lableDate.FontSize = width * 0.04;
+            lablePartOfDay.FontSize = width * 0.04;
+
+            if (Utility.UtilityService.IsScreenPortrait)
+            {
+                lablePartOfDay.Margin = new Thickness(0, 10, 10, 0);
+            }
+            else
+            {
+                if (width > 600)
+                {
+                    lablePartOfDay.Margin = new Thickness(0, 15, 20, 0);
+                }
+                else
+                {
+                    lablePartOfDay.Margin = new Thickness(0, 20, 10, 0);
+                }
+            }
         }
 
         protected void UpdateWeekLableFontSizes()
@@ -276,7 +288,7 @@ namespace mClock.Views
 
                     lableMinute.Text = now.Minute.ToString("00");
                     lableSecond.Text = now.Second.ToString("00");
-                    lablePartOfDay.Text = now.ToString("tt");
+                    lablePartOfDay.Text = now.ToString("tt", CultureInfo.InvariantCulture);
 
                     UpdateDayOfWeekText();
                     UpdateDayOfWeekVisibility(now);
@@ -629,13 +641,12 @@ namespace mClock.Views
                 this.width = width;
                 this.height = height;
 
-                UpdateLableFontSizes(this.width);
+                UpdateLables(this.width);
 
                 // Update week display
                 HasDayOfWeekTextChanged = true;
                 UpdateDayOfWeekText();
             }
         }
-
     }
 }

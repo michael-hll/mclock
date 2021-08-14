@@ -6,7 +6,7 @@
     xmlns:resource="clr-namespace:mClock.Resources"
     Shell.NavBarIsVisible="False"
     Shell.FlyoutItemIsVisible="False"
-    Shell.TabBarIsVisible="False"
+    Shell.TabBarIsVisible="True"
     Title="{x:Static resource:AppResources.MClock_Title}"
     BackgroundColor="{DynamicResource ClockBackgroundColor}">
 
@@ -19,8 +19,8 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
-    <!--<StackLayout x:Name="stackLayout" Padding="50,0" Orientation="Vertical" BackgroundColor="{DynamicResource PageBackgroundColor}" Spacing="0" VerticalOptions="Center">-->
-    <Grid x:Name="mainGrid" RowSpacing="0" ColumnSpacing="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" Margin="0">
+    <Grid x:Name="mainGrid" RowSpacing="0" ColumnSpacing="0" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand"
+          Margin="0" IsVisible="True">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -185,7 +185,5 @@
             </Label.GestureRecognizers>
         </Label>
     </Grid>
-
-    <!--</StackLayout>-->
 
 </ContentPage>

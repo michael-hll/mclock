@@ -2,7 +2,6 @@
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
 using Xamarin.Forms;
-using mClock.Utility;
 namespace mClock.Controls
 {
     public class CircleCountdown : SKCanvasView

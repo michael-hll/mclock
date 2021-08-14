@@ -9,8 +9,10 @@
     xmlns:controls="clr-namespace:mClock.Controls"
     ios:Page.UseSafeArea="true"
     Shell.NavBarIsVisible="False"
+    Shell.TabBarIsVisible="True"
     FlowDirection="MatchParent"
     BackgroundColor="{DynamicResource TimerBackgroundColor}">
+
     <Grid BackgroundColor="Transparent" Margin="10" Padding="0" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <Grid.RowDefinitions>
             <RowDefinition Height="0" />
@@ -27,7 +29,7 @@
               Grid.Column="0"
               RowSpacing="0"
               ColumnSpacing="0"
-              Margin="0"
+              Margin="10" 
               Padding="0"
               VerticalOptions="Fill"
               HorizontalOptions="Fill"
@@ -96,6 +98,7 @@
                     ProgressEndColor="{DynamicResource TimerCircle3Color}"
                     StrokeWidth="10"
                     CircleMargin="54"
+                    BackgroundColor="Transparent"
                     FlowDirection="LeftToRight">
                 <controls:CircleCountdown.GestureRecognizers>
                     <SwipeGestureRecognizer Direction="Right" Swiped="OnLableSwiped"/>
