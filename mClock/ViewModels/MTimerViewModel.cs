@@ -138,7 +138,7 @@ namespace mClock.ViewModels
             CreateMTimer();
 
             _countdown.EndDate = MTimer.Date;
-            _countdown.Start();
+            _countdown.Start(1 / 60);
 
             return base.StartAsync();
         }

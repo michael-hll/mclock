@@ -39,6 +39,7 @@ namespace mClock.Views
             BindingContext = viewModel;
             viewModel.CurrentTime = DateTime.Now.ToString(TimeFormats[TimeFormatIndex]);
 
+            // update date/time in timer page
             Device.StartTimer(TimeSpan.FromMilliseconds(1000), () =>
             {
                 viewModel.CurrentTime = DateTime.Now.ToString(TimeFormats[TimeFormatIndex]);

@@ -16,12 +16,15 @@ namespace mClock.Views
         const double DAY_OF_WEEK_OPACITY_HIDE = 0.15;
         const int SLEEPTIME_START = 22;
         const int SLEEPTIME_END = 6;
+        const int WAIT_SECONDS_TO_SLEEP = 60 * 5;
+        int seconds_count_to_sleep = 0;
         ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
         ResourceDictionary CurrentTheme = new DarkTheme();
         IBrightnessService brightnessService = DependencyService.Get<IBrightnessService>();
 
         public double width;
         public double height;
+        private bool isTicking = false;
 
         public static readonly string[] DateFormats = {
             "MMM dd, yyyy",
@@ -256,15 +259,20 @@ namespace mClock.Views
             base.OnAppearing();
 
             InitiUIControls();
+            seconds_count_to_sleep = 0;
+
+            if (isTicking) return;
 
             Device.StartTimer(TimeSpan.FromSeconds(1), () =>
             {
                 DateTime now = DateTime.Now;
+                seconds_count_to_sleep += 1;
+                isTicking = true;
 
                 // make the screen brightness low in sleeping time
                 if (now.Hour >= SLEEPTIME_START || now.Hour < SLEEPTIME_END)
                 {
-                    if (IsInSleepTime == false)
+                    if (IsInSleepTime == false && seconds_count_to_sleep > WAIT_SECONDS_TO_SLEEP)
                     {
                         ScreenBrightness = brightnessService.GetBrightness();
                         brightnessService.SetBrightness(0f);

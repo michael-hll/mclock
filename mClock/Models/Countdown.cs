@@ -36,9 +36,9 @@ namespace mClock.Models
             }
         }
 
-        public void Start(int milliSeconds = 100)
+        public void Start(double seconds = 1)
         {
-            Device.StartTimer(TimeSpan.FromMilliseconds(milliSeconds), () =>
+            Device.StartTimer(TimeSpan.FromSeconds(seconds), () =>
             {
                 if (State == CountdownState.Running)
                 {
