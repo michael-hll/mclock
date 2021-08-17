@@ -13,12 +13,14 @@
     <PackageReference Include="SkiaSharp.Views.Forms" Version="2.80.3" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.4.11.982" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
+    <PackageReference Include="Xam.Plugin.SimpleAudioPlayer" Version="1.5.0" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="digital-7 %28mono%29.ttf" />
     <None Remove="Themes\" />
     <None Remove="Utility\" />
     <None Remove="Resources\" />
+    <None Remove="Xam.Plugin.SimpleAudioPlayer" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="digital-7-mono.ttf" />

@@ -7,6 +7,7 @@ using mClock.Models;
 using mClock.Services;
 using mClock.ViewModels.Base;
 using mClock.Views;
+using Plugin.SimpleAudioPlayer;
 using Xamarin.Forms;
 
 namespace mClock.ViewModels
@@ -26,6 +27,7 @@ namespace mClock.ViewModels
         private string _currTime;
         private Color _stateColor;
         private bool isLoaded = false;
+        ISimpleAudioPlayer _timer_complete_player = CrossSimpleAudioPlayer.Current;
 
         public MTimerViewModel()
         {
@@ -36,6 +38,7 @@ namespace mClock.ViewModels
             _timerFontSize = Xamarin.Essentials.DeviceDisplay.MainDisplayInfo.Height / 6.8;
             _currTime = DateTime.Now.ToString("h:mm tt");
             _stateColor = Color.Red;
+            _timer_complete_player.Load("timer-finish.mp3");
         }
 
         private void Countdown_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
@@ -183,7 +186,8 @@ namespace mClock.ViewModels
         void OnCountdownCompleted()
         {
             Countdown.State = CountdownState.Stopped;
-            DependencyService.Get<IPlaySoundService>().PlaySystemSound(1005);
+            //DependencyService.Get<IPlaySoundService>().PlaySystemSound(1005);
+            _timer_complete_player.Play();
             ResetParameters();
         }
 

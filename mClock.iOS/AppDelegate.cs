@@ -1,4 +1,5 @@
-﻿using FFImageLoading.Forms.Platform;
+﻿using AVFoundation;
+using FFImageLoading.Forms.Platform;
 using Foundation;
 using UIKit;
 
@@ -20,15 +21,19 @@ namespace mClock.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            CachedImageRenderer.Init();
-
-            //var currentSession = AVAudioSession.SharedInstance();
-            //currentSession.SetCategory(AVAudioSessionCategory.Playback, AVAudioSessionCategoryOptions.MixWithOthers);
-            //currentSession.SetActive(true);
+            //CachedImageRenderer.Init();
 
             LoadApplication(new App());
-
+            EnableBackgroundAudio();
             return base.FinishedLaunching(app, options);
+        }
+
+        private void EnableBackgroundAudio()
+        {
+            var currentSession = AVAudioSession.SharedInstance();
+            currentSession.SetCategory(AVAudioSessionCategory.Playback,
+            AVAudioSessionCategoryOptions.MixWithOthers);
+            currentSession.SetActive(true);
         }
     }
 }
