@@ -6,7 +6,7 @@
     xmlns:resource="clr-namespace:mClock.Resources"
     Shell.NavBarIsVisible="False"
     Shell.FlyoutItemIsVisible="False"
-    Shell.TabBarIsVisible="True"
+    Shell.TabBarIsVisible="False"
     Title="{x:Static resource:AppResources.MClock_Title}"
     BackgroundColor="{DynamicResource ClockBackgroundColor}">
 

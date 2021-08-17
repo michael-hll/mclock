@@ -9,7 +9,7 @@
     xmlns:controls="clr-namespace:mClock.Controls"
     ios:Page.UseSafeArea="true"
     Shell.NavBarIsVisible="False"
-    Shell.TabBarIsVisible="True"
+    Shell.TabBarIsVisible="False"
     FlowDirection="MatchParent"
     BackgroundColor="{DynamicResource TimerBackgroundColor}">
 
